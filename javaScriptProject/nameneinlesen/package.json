@@ -1,0 +1,18 @@
+{
+  "name": "nameneinlesen",
+  "version": "1.0.0",
+  "description": "Namen einlesen mit prompt-sync",
+  "main": "nameneinlesen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "namen",
+    "einlesen"
+  ],
+  "author": "Osama_Thabit",
+  "license": "MIT",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
