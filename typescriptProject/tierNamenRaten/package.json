@@ -1,0 +1,19 @@
+{
+  "name": "tiernamenraten",
+  "version": "1.0.0",
+  "description": "Raten von Tier Namen",
+  "main": "tiernamen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Tier",
+    "Namen",
+    "Raten"
+  ],
+  "author": "Osama_Thabit",
+  "license": "ISC",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}

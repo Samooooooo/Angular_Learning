@@ -1,0 +1,17 @@
+{
+  "name": "zahlraten_1bis99",
+  "version": "1.0.0",
+  "description": "Lotto",
+  "main": "zahlenRaten.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Lotto"
+  ],
+  "author": "Osama_Thabit",
+  "license": "MIT",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
