@@ -24,7 +24,4 @@ while (repeat == true) {
     if (inputRepeat !== 'j') {
         repeat = false
     }
-    else{
-        repeat = true
-    }
 }
