@@ -1,66 +1,89 @@
-/* HeroesComponent's private CSS styles */
+/* Overall layout */
+.heroes-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
 .heroes {
-    margin: 0 0 2em 0;
-    list-style-type: none;
-    padding: 0;
-    width: 15em;
-  }
-  
-  .heroes li {
-    display: flex;
-  }
-  
-  .heroes button {
-    flex: 1;
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #EEE;
-    margin: .5em;
-    padding: 0;
-    border-radius: 4px;
-    display: flex;
-    align-items: stretch;
-    height: 1.8em;
-  }
-  
-  .heroes button:hover {
-    color: #2c3a41;
-    background-color: #e6e6e6;
-    left: .1em;
-  }
-  
-  .heroes button:active {
-    background-color: #525252;
-    color: #fafafa;
-  }
-  
-  .heroes button.selected {
-    background-color: black;
-    color: white;
-  }
-  
-  .heroes button.selected:hover {
-    background-color: #505050;
-    color: white;
-  }
-  
-  .heroes button.selected:active {
-    background-color: black;
-    color: white;
-  }
-  
-  .heroes .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #405061;
-    line-height: 1em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-  }
-  
-  .heroes .name {
-    align-self: center;
-  }
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Hero list item */
+.heroes li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition:100ms;
+  border:solid rgba(77, 5, 5, 0.356) ;
+  height: 20px;
+}
+
+.heroes li:hover {
+  background-color: #ffffff;
+  border:solid rgba(0, 0, 0, 100);
+
+}
+
+/* Badge */
+.heroes .badge {
+  display: inline-block;
+  font-size: 14px;
+  color: #fff;
+  padding: 6px 12px;
+  background-color: #405061;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+/* Delete button */
+.delete {
+  color: red;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.delete:hover {
+  color: #b30000;
+}
+
+/* Add hero section */
+.form-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#new-hero {
+  flex: 1;
+  height: 40px;
+  margin-right: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 0 12px;
+}
+
+.add-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
