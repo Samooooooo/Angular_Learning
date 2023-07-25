@@ -1,0 +1,17 @@
+.cool-border {
+  position: relative;
+  padding: 20px;
+  /* Set the desired width and height for your element */
+  width: 200px;
+  height: 100px;
+}
+
+.cool-border::after {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* Adjust this value to control the height of the border effect */
+  left: 0;
+  width: 100%;
+  height: 10px; /* Adjust this value to control the height of the border effect */
+  background: linear-gradient(to right, #f00, #0f0, #00f); /* Adjust the gradient colors as desired */
+}
