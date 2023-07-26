@@ -9,10 +9,14 @@ import { MessageService } from '../message.service';
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
+
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
 
-  constructor(private heroService: HeroService) { }
+  constructor(
+    private heroService: HeroService,
+    private messageService: MessageService
+    ) { }
 
   ngOnInit(): void {
     this.getHeroes();

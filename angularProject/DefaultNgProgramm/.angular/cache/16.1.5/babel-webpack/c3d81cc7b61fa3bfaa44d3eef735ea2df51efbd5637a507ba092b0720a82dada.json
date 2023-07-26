@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class routeConfig {}","map":{"version":3,"names":["routeConfig"],"sources":["/home/osama_thabit/Angular/Angular_Learning/angularProject/DefaultNgProgramm/src/app/routes.ts"],"sourcesContent":["export class routeConfig{\n  \n}"],"mappings":"AAAA,OAAM,MAAOA,WAAW"},"metadata":{},"sourceType":"module","externalDependencies":[]}
