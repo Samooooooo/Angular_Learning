@@ -4,7 +4,5 @@
     <bm-book-list-item [book]="book" (click)="doSelect(book)">
     </bm-book-list-item>
   </li>
-  <li *ngIf="!books.length">
-    No books available.
-  </li>
+  <li *ngIf="!books.length">No books available.</li>
 </ul>
