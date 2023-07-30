@@ -2,7 +2,7 @@
   <bm-book-list *ngIf="!book" (selectBook)="showDetails($event)"></bm-book-list>
   <bm-book-details
     *ngIf="book"
-    [book]="book"
     (leave)="showList()"
+    [book]="book"
   ></bm-book-details>
 </main>
