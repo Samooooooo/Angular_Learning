@@ -20,6 +20,5 @@ export class BookListComponent {
   books: Book[] = [];
 
   constructor(private service: BookStoreService) {
-    this.books = service.getAll();
   }
 }

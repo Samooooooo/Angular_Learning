@@ -16,6 +16,5 @@ export class BookDetailsComponent {
     private route: ActivatedRoute,
   ) {
     const isbn = this.route.snapshot.paramMap.get('isbn')!;
-    this.book = this.service.getSingle(isbn);
   }
 }
