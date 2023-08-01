@@ -8,12 +8,4 @@ import { Book } from './shared/book';
 })
 export class AppComponent {
   book: Book | null = null;
-
-  showList() {
-    this.book = null;
-  }
-
-  showDetails(book: Book) {
-    this.book = book;
-  }
 }
