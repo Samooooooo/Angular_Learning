@@ -3,7 +3,6 @@ import { Book } from '../../shared/book';
 import { BookStoreService } from '../../shared/book-store.service';
 import { Subscriber } from 'rxjs';
 
-
 @Component({
   selector: 'bm-book-list',
   templateUrl: './book-list.component.html',
