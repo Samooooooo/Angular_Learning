@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Book } from '../../shared/book';
 import { BookStoreService } from '../../shared/book-store.service';
+import { Subscriber } from 'rxjs';
+
 
 @Component({
   selector: 'bm-book-list',
@@ -9,16 +11,19 @@ import { BookStoreService } from '../../shared/book-store.service';
   providers: [{ provide: BookStoreService }],
 })
 export class BookListComponent {
-  dynamicClass = 'my-dynamic-class';
-  staticClass = 'my-static-class';
-  isClassApplied = true;
+  // dynamicClass = 'my-dynamic-class';
+  // staticClass = 'my-static-class';
+  // isClassApplied = true;
 
-  toggleClass(): void {
-    this.isClassApplied = !this.isClassApplied;
-  }
+  // toggleClass(): void {
+  //   this.isClassApplied = !this.isClassApplied;
+  // }
 
   books: Book[] = [];
 
   constructor(private service: BookStoreService) {
+    this.service.getAll().subscribe((books) => {
+      this.books = books;
+    });
   }
 }

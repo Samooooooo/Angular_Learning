@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component } from '@angular/core';
 import { Book } from '../../shared/book';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookStoreService } from 'src/app/shared/book-store.service';
 
 @Component({
@@ -14,7 +14,21 @@ export class BookDetailsComponent {
   constructor(
     private service: BookStoreService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {
     const isbn = this.route.snapshot.paramMap.get('isbn')!;
+    this.service.getSingle(isbn).subscribe((book) => {
+      this.book = book;
+    });
+  }
+  removeBook(book: Book) {
+    if (
+      window.confirm(`Are you Sure to Delete the Book
+    ${book.title} ${book.isbn}`)
+    ) {
+      this.service
+        .remove(book.isbn)
+        .subscribe(() => this.router.navigateByUrl('/books'));
+    }
   }
 }
