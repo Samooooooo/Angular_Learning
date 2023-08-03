@@ -20,15 +20,20 @@ export class BookListComponent {
     this.books$ = this.service.getAll();
   }
   deleteAllBooks(books: Book[]) {
-    if (window.confirm(`Are you Sure to Delete the Book`)) {
+    if (window.confirm(`Are you Sure ( Delete all the Books )`)) {
       this.service
         .removeall(books)
         .subscribe(() => this.router.navigateByUrl('/home'));
     }
   }
   resetBooks() {
-    if (window.confirm(`Are you Sure to Add the Books`)) {
-      this.service.loadBooks();
+    if (window.confirm(`Are you Sure ( Load the Books )`)) {
+      this.service.loadBooks().subscribe();
+      setTimeout(() => {
+        this.router
+          .navigateByUrl('/')
+          .then(() => this.router.navigateByUrl('/books'));
+      }, 1000);
     }
   }
 }
@@ -39,4 +44,3 @@ export class BookListComponent {
 
 // toggleClass(): void {
 //   this.isClassApplied = !this.isClassApplied;
-// }

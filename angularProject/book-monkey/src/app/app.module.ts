@@ -5,12 +5,29 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksModule } from './books/books.module';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { SearchComponent } from './search/search.component';
+import { AuthInterceptor } from './shared/auth.interceptor';
+import { AdminModule } from './admin/admin.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, BooksModule, HttpClientModule],
-  providers: [],
+  declarations: [AppComponent, HomeComponent, SearchComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BooksModule,
+    HttpClientModule,
+    AdminModule,
+    FormsModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

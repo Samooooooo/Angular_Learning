@@ -1,7 +1,7 @@
 <h1>Books</h1>
 <ul class="book-list" *ngIf="books$ | async as books">
-  <button (click)="deleteAllBooks(books)">sd</button>
-  <button (click)="resetBooks()">reset</button>
+  <button class="red" (click)="deleteAllBooks(books)">Delete all</button>
+  <button class="green" (click)="resetBooks()">Load Books</button>
 
   <li *ngFor="let book of books">
     <bm-book-list-item [book]="book"> </bm-book-list-item>
