@@ -6,11 +6,13 @@
     Books
   </a>
   <a href="https://api5.angular-buch.com/books">Books list</a>
+  <a routerLink="/admin" routerLinkActive="active" ariaCurrentWhenActive="page">
+    Administration
+  </a>
   <div class="actions">
     <button class="green" (click)="auth.login()" *ngIf="!auth.isAuthenticated">
       Login
     </button>
-
     <button class="red" (click)="auth.logout()" *ngIf="auth.isAuthenticated">
       Logout Wie du willst
     </button>

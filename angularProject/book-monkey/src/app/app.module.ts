@@ -9,7 +9,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { AdminModule } from './admin/admin.module';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, SearchComponent],
@@ -19,7 +18,6 @@ import { FormsModule } from '@angular/forms';
     BooksModule,
     HttpClientModule,
     AdminModule,
-    FormsModule,
   ],
   providers: [
     {
