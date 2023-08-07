@@ -20,7 +20,7 @@ export class BookListComponent {
     this.books$ = this.service.getAll();
   }
   deleteAllBooks(books: Book[]) {
-    if (window.confirm(`Are you Sure ( Delete all the Books )`)) {
+    if (window.confirm(` ( Delete all the Books )`)) {
       this.service
         .removeall(books)
         .subscribe(() => this.router.navigateByUrl('/home'));

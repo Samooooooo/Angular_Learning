@@ -1,22 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private _isAuthenticatd$ = new BehaviorSubject(true);
-  readonly isAuthenticatd$ = this._isAuthenticatd$.asObservable();
+  private _isAuthenticated$ = new BehaviorSubject(true);
+  readonly isAuthenticated$ = this._isAuthenticated$.asObservable();
+  router = inject(Router);
 
   login() {
-    this._isAuthenticatd$.next(true);
+    this._isAuthenticated$.next(true);
+    this.router.navigateByUrl('books');
   }
 
   logout() {
-    this._isAuthenticatd$.next(false);
+    this._isAuthenticated$.next(false);
+    this.router.navigateByUrl('books');
   }
 
   get isAuthenticated() {
-    return this._isAuthenticatd$.value;
+    return this._isAuthenticated$.value;
   }
 }

@@ -23,13 +23,8 @@ export class BookDetailsComponent {
   }
 
   removeBook(book: Book) {
-    if (
-      window.confirm(`Are you Sure to Delete the Book
-    ${book.title} ${book.isbn}`)
-    ) {
-      this.service
-        .remove(book.isbn)
-        .subscribe(() => this.router.navigateByUrl('/books'));
-    }
+    this.service
+      .remove(book.isbn)
+      .subscribe(() => this.router.navigateByUrl('/books'));
   }
 }

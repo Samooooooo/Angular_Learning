@@ -1,12 +1,16 @@
 import {
   Component,
+  Output,
   EventEmitter,
   Input,
   OnChanges,
-  Output,
+  inject,
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Book } from 'src/app/shared/book';
+
+import { Book } from '../../shared/book';
+import { AsyncValidatorsService } from '../shared/async-validators.service';
+import { atLeastOneValue, isbnFormat } from '../shared/validators';
 
 @Component({
   selector: 'bm-book-form',
@@ -25,26 +29,14 @@ export class BookFormComponent implements OnChanges {
     subtitle: new FormControl('', { nonNullable: true }),
     isbn: new FormControl('', {
       nonNullable: true,
-      validators: [
-        Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(13),
-      ],
+      validators: [Validators.required, isbnFormat],
+      asyncValidators: inject(AsyncValidatorsService).isbnExists(),
     }),
     description: new FormControl('', { nonNullable: true }),
     published: new FormControl('', { nonNullable: true }),
-    thumbnailUrl: new FormControl('', { nonNullable: true }),
     authors: this.buildAuthorsArray(['']),
+    thumbnailUrl: new FormControl('', { nonNullable: true }),
   });
-
-  private setFormValues(book: Book) {
-    this.form.patchValue(book);
-    this.form.setControl('authors', this.buildAuthorsArray(book.authors));
-  }
-
-  get authors() {
-    return this.form.controls.authors;
-  }
 
   ngOnChanges(): void {
     if (this.book) {
@@ -55,32 +47,46 @@ export class BookFormComponent implements OnChanges {
     }
   }
 
-  submitForm() {
-    const formValue = this.form.getRawValue();
-    const authors = formValue.authors.filter((author) => !!author);
-    const newBook: Book = {
-      ...formValue,
-      authors,
-    };
-    this.submitBook.emit(newBook);
+  private setFormValues(book: Book) {
+    this.form.patchValue(book);
+
+    this.form.setControl('authors', this.buildAuthorsArray(book.authors));
+  }
+
+  private setEditMode(isEditing: boolean) {
+    const isbnControl = this.form.controls.isbn;
+
+    if (isEditing) {
+      isbnControl.disable();
+    } else {
+      isbnControl.enable();
+    }
+  }
+
+  private buildAuthorsArray(authors: string[]) {
+    return new FormArray(
+      authors.map((v) => new FormControl(v, { nonNullable: true })),
+      atLeastOneValue,
+    );
+  }
+
+  get authors() {
+    return this.form.controls.authors;
   }
 
   addAuthorControl() {
     this.authors.push(new FormControl('', { nonNullable: true }));
   }
 
-  private buildAuthorsArray(authors: string[]) {
-    return new FormArray(
-      authors.map((v) => new FormControl(v, { nonNullable: true })),
-    );
-  }
+  submitForm() {
+    const formValue = this.form.getRawValue();
+    const authors = formValue.authors.filter((author) => !!author);
 
-  private setEditMode(isEditing: boolean) {
-    const isbnControl = this.form.controls.isbn;
-    if (isEditing) {
-      isbnControl.disable();
-    } else {
-      isbnControl.enable();
-    }
+    const newBook: Book = {
+      ...formValue,
+      authors,
+    };
+
+    this.submitBook.emit(newBook);
   }
 }
