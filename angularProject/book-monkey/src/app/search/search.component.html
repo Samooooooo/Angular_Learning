@@ -10,6 +10,9 @@
   <li *ngFor="let book of results">
     <a [routerLink]="['/books', book.isbn]">
       {{ book.title }}
+      <div>
+        <img class="Sdetails" [src]="book.thumbnailUrl" alt="Cover" />
+      </div>
       <p role="doc-subtitle">{{ book.subtitle }}</p>
     </a>
   </li>

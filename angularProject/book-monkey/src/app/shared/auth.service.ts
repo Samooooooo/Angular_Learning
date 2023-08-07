@@ -17,7 +17,7 @@ export class AuthService {
 
   logout() {
     this._isAuthenticated$.next(false);
-    this.router.navigateByUrl('books');
+    this.router.navigateByUrl('/');
   }
 
   get isAuthenticated() {
