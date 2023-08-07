@@ -6,7 +6,9 @@
   </p>
   <ul class="comma-list">
     <li *ngFor="let author of book.authors">
-      {{ author }}
+      <strong>
+        {{ author }}
+      </strong>
     </li>
   </ul>
   <div>ISBN {{ book.isbn | isbn }}</div>
