@@ -1,6 +1,7 @@
 import re
 import json
 from enum import Enum
+import os
 
 # Define the QuestionType enum
 class QuestionType(Enum):
@@ -8,8 +9,11 @@ class QuestionType(Enum):
     MULTIPLE_CHOICE = "multiple-choice"
     FILL_IN = "fill-in"
 
+input_file_path = r'C:\Users\test\Desktop\Angular\Angular_Learning\angularProject\LPC1-APP\Draw-IO-Story\questions.txt'
+output_file_path = os.path.join(os.path.dirname(input_file_path), 'output.json')
+
 # Read the input text file
-with open('questions.txt', 'r') as file:
+with open(input_file_path, 'r') as file:
     content = file.read()
 
 # Split the content into individual questions
@@ -51,4 +55,11 @@ for question_text in questions:
 
     if len(question_data["options"]) == 0:
         question_data["questionType"] = QuestionType.FILL_IN.value
-        # Join the fill-in answers into a single string and store as
+        # Join the fill-in answers into a single string and store as an array with a single element
+        question_data["correctAnswer"] = [''.join(question_data["correctAnswer"])]
+
+    parsed_questions.append(question_data)
+
+# Write the parsed questions to the output JSON file in the same folder as the input file
+with open(output_file_path, 'w') as json_file:
+    json.dump(parsed_questions, json_file, indent=2)

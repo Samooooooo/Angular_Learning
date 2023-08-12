@@ -1,0 +1,42 @@
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  padding: 10px;
+  border: 3px solid black;
+  border-radius: 8px;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  border: 2px solid black;
+}
+
+.nav-buttons button {
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s, background-color 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.nav-buttons button:hover {
+  color: #007bff;
+  background-color: #f8f8f8;
+}
+
+.nav-buttons button.active {
+  color: #007bff;
+  background-color: #f8f8f8;
+}

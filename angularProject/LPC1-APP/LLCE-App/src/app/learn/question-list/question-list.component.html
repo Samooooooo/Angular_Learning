@@ -1,0 +1,18 @@
+<ul>
+  <li *ngFor="let q of questions">
+    <div class="listItem">
+      <h3>{{q.question}}</h3>
+      <ul>
+        <li *ngFor="let o of q.options">
+          <p>{{o}}</p>
+        </li>
+      </ul>
+    </div>
+    <div style="height:3em ;">
+      <button (click)="showAnswer(q)">Show Answer</button>
+      <p *ngIf="q.showAnswer">
+        <strong>Answer: </strong>{{q.correctAnswer}}
+      </p>
+    </div>
+  </li>
+</ul>
