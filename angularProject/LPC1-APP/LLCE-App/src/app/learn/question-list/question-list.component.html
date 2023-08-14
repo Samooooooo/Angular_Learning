@@ -1,18 +1,22 @@
-<ul>
-  <li *ngFor="let q of questions" style="border: 5px solid rgba(128, 128, 128, 0.573);border-radius: 5px; padding: 10px;padding-bottom: 1em; margin-bottom: 10px;">
-    <div class="listItem">
-      <h3>{{q.question}}</h3>
-      <ul>
-        <li *ngFor="let o of q.options">
-          <p>{{o}}</p>
-        </li>
-      </ul>
-    </div>
-    <div style="height:3em ;">
-      <button (click)="showAnswer(q)">Show Answer</button>
-      <p *ngIf="q.showAnswer">
-        <strong>Answer: </strong>{{q.correctAnswer}}
-      </p>
-    </div>
-  </li>
-</ul>
+<div class="scroll-container">
+  <ul *ngIf="questions$ | async as questions"  >
+    <li *ngFor="let q of questions" style="list-style: none; border: 5px solid rgba(128, 128, 128, 0.573);border-radius: 5px; padding: 10px;padding-bottom: 2em; margin-bottom: 10px;">
+      <a *ngIf="q" [routerLink]="q.index" style="text-decoration: none; color: black;">
+        <div class="listItem">
+          <h3>{{q.question}}</h3>
+          <ul>
+            <li *ngFor="let o of q.options">
+              <p>{{o}}</p>
+            </li>
+          </ul>
+        </div>
+      </a>
+      <div style="height:3em ;">
+        <button (click)="showAnswer(q)">Show Answer</button>
+        <p *ngIf="q.showAnswer">
+          <strong>Answer: </strong>{{q.correctAnswer}}
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>

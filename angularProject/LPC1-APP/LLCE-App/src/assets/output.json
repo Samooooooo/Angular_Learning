@@ -1,5 +1,6 @@
 [
   {
+    "index": 0,
     "questionType": "single-choice",
     "question": "Which type of file system is created by mkfs when it is executed with the block device name only and without any additional parameters?",
     "options": [
@@ -14,6 +15,7 @@
     ]
   },
   {
+    "index": 1,
     "questionType": "single-choice",
     "question": "Which umask value ensures that new directories can be read, written and listed by their owning user, read and listed by their owning group and are not accessible at all for everyone else?",
     "options": [
@@ -28,6 +30,7 @@
     ]
   },
   {
+    "index": 2,
     "questionType": "single-choice",
     "question": "Which of the following commands changes the number of days before the ext3 filesystem on /dev/sda1 has to run through a full filesystem check while booting?",
     "options": [
@@ -42,6 +45,7 @@
     ]
   },
   {
+    "index": 3,
     "questionType": "single-choice",
     "question": "Which is the default percentage of reserved space for the root user on new ext4 filesystems?",
     "options": [
@@ -56,6 +60,7 @@
     ]
   },
   {
+    "index": 4,
     "questionType": "single-choice",
     "question": "Which of the following is true when a file system, which is neither listed in /etc/fstab nor known to system, is mounted manually?",
     "options": [
@@ -70,6 +75,7 @@
     ]
   },
   {
+    "index": 5,
     "questionType": "fill-in",
     "question": "Which program updates the database that is used by the locate command? (Specify ONLY the command without any path or parameters).",
     "options": [],
@@ -78,6 +84,7 @@
     ]
   },
   {
+    "index": 6,
     "questionType": "single-choice",
     "question": "What does the command mount --bind do?",
     "options": [
@@ -92,6 +99,7 @@
     ]
   },
   {
+    "index": 7,
     "questionType": "single-choice",
     "question": "Consider the following output from the command ls -i: 525385 a.txt How would a new file named c.txt be created with the same inode number as a.txt (Inode 525385)?",
     "options": [
@@ -106,6 +114,7 @@
     ]
   },
   {
+    "index": 8,
     "questionType": "multiple-choice",
     "question": "Consider the following directory: drwxrwxr-x 2 root sales 4096 Jan 1 15:21 sales Which command ensures new files created within the directory sales are owned by the group sales? (Choose two.)",
     "options": [
@@ -121,6 +130,7 @@
     ]
   },
   {
+    "index": 9,
     "questionType": "multiple-choice",
     "question": "In order to display all currently mounted filesystems, which of the following commands could be used? (Choose two.)",
     "options": [
@@ -136,6 +146,7 @@
     ]
   },
   {
+    "index": 10,
     "questionType": "fill-in",
     "question": "Which command displays the current disk space usage for all mounted file systems? (Specify ONLY the command without any path or parameters.)",
     "options": [],
@@ -144,6 +155,7 @@
     ]
   },
   {
+    "index": 11,
     "questionType": "single-choice",
     "question": "Which chown command changes the ownership to dave and the group to staff on a file named data.txt?",
     "options": [
@@ -158,6 +170,7 @@
     ]
   },
   {
+    "index": 12,
     "questionType": "single-choice",
     "question": "When considering the use of hard links, what are valid reasons not to use hard links?",
     "options": [
@@ -172,6 +185,7 @@
     ]
   },
   {
+    "index": 13,
     "questionType": "single-choice",
     "question": "In compliance with the FHS, in which of the directories are man pages found?",
     "options": [
@@ -186,6 +200,7 @@
     ]
   },
   {
+    "index": 14,
     "questionType": "fill-in",
     "question": "Which file in the /proc filesystem lists parameters passed from the bootloader to the kernel? (Specify the file name only without any path.)",
     "options": [],
@@ -194,6 +209,7 @@
     ]
   },
   {
+    "index": 15,
     "questionType": "single-choice",
     "question": "What is the process ID number of the init process on a System V init based system?",
     "options": [
@@ -208,6 +224,7 @@
     ]
   },
   {
+    "index": 16,
     "questionType": "single-choice",
     "question": "Which daemon handles power management events on a Linux system?",
     "options": [
@@ -222,6 +239,7 @@
     ]
   },
   {
+    "index": 17,
     "questionType": "multiple-choice",
     "question": "Which of the following statements are true about the boot sequence of a PC using a BIOS? (Choose two.)",
     "options": [
@@ -237,6 +255,7 @@
     ]
   },
   {
+    "index": 18,
     "questionType": "multiple-choice",
     "question": "What is true regarding UEFI firmware? (Choose two.)",
     "options": [
@@ -252,6 +271,7 @@
     ]
   },
   {
+    "index": 19,
     "questionType": "single-choice",
     "question": "A faulty kernel module is causing issues with a network interface card. Which of the following actions ensures that this module is not loaded automatically when the system boots?",
     "options": [
@@ -266,6 +286,7 @@
     ]
   },
   {
+    "index": 20,
     "questionType": "multiple-choice",
     "question": "When is the content of the kernel ring buffer reset? (Choose two.)",
     "options": [
@@ -281,6 +302,7 @@
     ]
   },
   {
+    "index": 21,
     "questionType": "single-choice",
     "question": "What is the first program the Linux kernel starts at boot time when using System V init?",
     "options": [
@@ -295,6 +317,7 @@
     ]
   },
   {
+    "index": 22,
     "questionType": "single-choice",
     "question": "A Debian package creates several files during its installation. Which of the following commands searches for packages owning the file /etc/debian_version?",
     "options": [
@@ -309,6 +332,7 @@
     ]
   },
   {
+    "index": 23,
     "questionType": "single-choice",
     "question": "What is contained on the EFI System Partition?",
     "options": [
@@ -323,6 +347,7 @@
     ]
   },
   {
+    "index": 24,
     "questionType": "multiple-choice",
     "question": "Which of the following directories on a 64 bit Linux system typically contain shared libraries? (Choose two.)",
     "options": [
@@ -338,6 +363,7 @@
     ]
   },
   {
+    "index": 25,
     "questionType": "multiple-choice",
     "question": "Which of the following files exist in a standard GRUB 2 installation? (Choose two.)",
     "options": [
@@ -353,6 +379,7 @@
     ]
   },
   {
+    "index": 26,
     "questionType": "single-choice",
     "question": "Which of the following commands installs all packages with a name ending with the string foo?",
     "options": [
@@ -367,6 +394,7 @@
     ]
   },
   {
+    "index": 27,
     "questionType": "multiple-choice",
     "question": "Which of the following properties of a Linux system should be changed when a virtual machine is cloned? (Choose two.)",
     "options": [
@@ -382,6 +410,7 @@
     ]
   },
   {
+    "index": 28,
     "questionType": "single-choice",
     "question": "Which of the following commands installs GRUB 2 into the master boot record on the third hard disk?",
     "options": [
@@ -396,6 +425,7 @@
     ]
   },
   {
+    "index": 29,
     "questionType": "single-choice",
     "question": "Which of the following partition types is used for Linux swap spaces when partitioning hard disk drives?",
     "options": [
@@ -410,6 +440,7 @@
     ]
   },
   {
+    "index": 30,
     "questionType": "multiple-choice",
     "question": "What is true regarding the configuration of yum? (Choose two.)",
     "options": [
@@ -425,6 +456,7 @@
     ]
   },
   {
+    "index": 31,
     "questionType": "single-choice",
     "question": "Which of the following apt-get subcommands installs the newest versions of all currently installed packages?",
     "options": [
@@ -439,6 +471,7 @@
     ]
   },
   {
+    "index": 32,
     "questionType": "single-choice",
     "question": "Which command uninstalls a package but keeps its configuration files in case the package is re-installed?",
     "options": [
@@ -453,6 +486,7 @@
     ]
   },
   {
+    "index": 33,
     "questionType": "single-choice",
     "question": "Which of the following commands lists the dependencies of the RPM package file foo.rpm?",
     "options": [
@@ -467,6 +501,7 @@
     ]
   },
   {
+    "index": 34,
     "questionType": "single-choice",
     "question": "What is the maximum niceness value that a regular user can assign to a process with the nice command when executing a new process?",
     "options": [
@@ -481,6 +516,7 @@
     ]
   },
   {
+    "index": 35,
     "questionType": "multiple-choice",
     "question": "Which of the following commands list all files and directories within the /tmp/ directory and its subdirectories which are owned by the user root? (Choose two.)",
     "options": [
@@ -496,6 +532,7 @@
     ]
   },
   {
+    "index": 36,
     "questionType": "multiple-choice",
     "question": "Which of the following are valid stream redirection operators within Bash? (Choose two.)",
     "options": [
@@ -511,6 +548,7 @@
     ]
   },
   {
+    "index": 37,
     "questionType": "single-choice",
     "question": "Which of the following vi commands deletes two lines, the current and the following line?",
     "options": [
@@ -525,6 +563,7 @@
     ]
   },
   {
+    "index": 38,
     "questionType": "single-choice",
     "question": "The command dbmaint & was used to run dbmaint in the background. However, dbmaint is terminated after logging out of the system. Which alternative dbmaint invocation lets dbmaint continue to run, even when the user, running the program, logs out?",
     "options": [
@@ -539,6 +578,7 @@
     ]
   },
   {
+    "index": 39,
     "questionType": "multiple-choice",
     "question": "From a Bash shell, which of the following commands directly execute the instructions from the file /usr/local/bin/runme.sh without starting a subshell? (Choose two.)",
     "options": [
@@ -554,6 +594,7 @@
     ]
   },
   {
+    "index": 40,
     "questionType": "fill-in",
     "question": "Which program runs a command in specific intervals and refreshes the display of the program\u2019s output? (Specify ONLY the command without any path or parameters.)",
     "options": [],
@@ -562,6 +603,7 @@
     ]
   },
   {
+    "index": 41,
     "questionType": "single-choice",
     "question": "Immediately after deleting 3 lines of text in vi and moving the cursor to a different line, which single character command will insert the deleted content below the current line?",
     "options": [
@@ -576,6 +618,7 @@
     ]
   },
   {
+    "index": 42,
     "questionType": "single-choice",
     "question": "Which of the following commands changes all CR-LF line breaks in the text file userlist.txt to Linux standard LF line breaks and stores the result in newlist.txt?",
     "options": [
@@ -590,6 +633,7 @@
     ]
   },
   {
+    "index": 43,
     "questionType": "single-choice",
     "question": "Given the following input stream: txt1.txt atxt.txt txtB.txt Which of the following regular expressions turns this input stream into the following output stream? txt1.bak.txt atxt.bak.txt txtB.bak.txt",
     "options": [
@@ -604,6 +648,7 @@
     ]
   },
   {
+    "index": 44,
     "questionType": "single-choice",
     "question": "Which command must be entered before exiting vi to save the current file as filea.txt?",
     "options": [
@@ -618,6 +663,7 @@
     ]
   },
   {
+    "index": 45,
     "questionType": "single-choice",
     "question": "Which of the following signals is sent to a process when the key combination Ctrl+C is pressed on the keyboard?",
     "options": [
@@ -632,6 +678,7 @@
     ]
   },
   {
+    "index": 46,
     "questionType": "single-choice",
     "question": "Which of the following commands displays the output of the foo command on the screen and also writes it to a file called /tmp/foodata?",
     "options": [
@@ -646,6 +693,7 @@
     ]
   },
   {
+    "index": 47,
     "questionType": "single-choice",
     "question": "What output will be displayed when the user fred executes the following command? echo 'fred $USER\u2019",
     "options": [
@@ -660,6 +708,7 @@
     ]
   },
   {
+    "index": 48,
     "questionType": "single-choice",
     "question": "Which of the following commands displays the path to the executable file that would be executed when the command foo is invoked?",
     "options": [
@@ -674,6 +723,7 @@
     ]
   },
   {
+    "index": 49,
     "questionType": "single-choice",
     "question": "When redirecting the output of find to the xargs command, what option to find is useful if the filenames contain spaces?",
     "options": [
@@ -688,6 +738,7 @@
     ]
   },
   {
+    "index": 50,
     "questionType": "multiple-choice",
     "question": "Which of the following commands can be used to determine how long the system has been running? (Choose two.)",
     "options": [
@@ -703,6 +754,7 @@
     ]
   },
   {
+    "index": 51,
     "questionType": "single-choice",
     "question": "What is true regarding the command ls > files if files does not exist?",
     "options": [
@@ -717,6 +769,7 @@
     ]
   },
   {
+    "index": 52,
     "questionType": "single-choice",
     "question": "Which of the following files, located in a user\u2019s home directory, contains the Bash history?",
     "options": [
@@ -731,6 +784,7 @@
     ]
   },
   {
+    "index": 53,
     "questionType": "multiple-choice",
     "question": "Which wildcards will match the following filenames? (Choose two.) ttyS0 ttyS1 ttyS2",
     "options": [
@@ -746,6 +800,7 @@
     ]
   },
   {
+    "index": 54,
     "questionType": "single-choice",
     "question": "Which of the following commands redirects the output of ls to standard error?",
     "options": [
@@ -760,6 +815,7 @@
     ]
   },
   {
+    "index": 55,
     "questionType": "single-choice",
     "question": "Which of the following commands displays the contents of a gzip compressed tar archive?",
     "options": [
@@ -774,6 +830,7 @@
     ]
   },
   {
+    "index": 56,
     "questionType": "single-choice",
     "question": "Which of the following commands prints a list of usernames (first column) and their primary group (fourth column) from the /etc/passwd file?",
     "options": [
@@ -788,6 +845,7 @@
     ]
   },
   {
+    "index": 57,
     "questionType": "single-choice",
     "question": "Which of the following regular expressions represents a single upper-case letter?",
     "options": [
@@ -802,6 +860,7 @@
     ]
   },
   {
+    "index": 58,
     "questionType": "fill-in",
     "question": "Which command is used to start another command with a given nice level? (Specify ONLY the command without any path or parameters.)",
     "options": [],
@@ -810,6 +869,7 @@
     ]
   },
   {
+    "index": 59,
     "questionType": "single-choice",
     "question": "Given a log file loga.log with timestamps of the format DD/MM/YYYY:hh:mm:ss, which command filters out all log entries in the time period between 8:00 am and 8:59 am?",
     "options": [
@@ -824,6 +884,7 @@
     ]
   },
   {
+    "index": 60,
     "questionType": "multiple-choice",
     "question": "Instead of supplying an explicit device in /etc/fstab for mounting, what other options may be used to identify the intended partition? (Choose two.)",
     "options": [
@@ -839,6 +900,7 @@
     ]
   },
   {
+    "index": 61,
     "questionType": "single-choice",
     "question": "A yum repository can declare sets of related packages. Which yum command installs all packages belonging to the group admintools?",
     "options": [
@@ -853,6 +915,7 @@
     ]
   },
   {
+    "index": 62,
     "questionType": "fill-in",
     "question": "What directory contains configuration files for additional yum repositories? (Specify the full path to the directory.)",
     "options": [],
@@ -861,6 +924,7 @@
     ]
   },
   {
+    "index": 63,
     "questionType": "single-choice",
     "question": "Which of the following commands installs the GRUB boot files into the currently active file systems and the boot loader into the first partition of the first disk?",
     "options": [
@@ -875,6 +939,7 @@
     ]
   },
   {
+    "index": 64,
     "questionType": "multiple-choice",
     "question": "Which of the following files are found in the /boot/ filesystem? (Choose two.)",
     "options": [
@@ -890,6 +955,7 @@
     ]
   },
   {
+    "index": 65,
     "questionType": "single-choice",
     "question": "Which file defines the network locations from where the Debian package manager downloads software packages?",
     "options": [
@@ -904,6 +970,7 @@
     ]
   },
   {
+    "index": 66,
     "questionType": "single-choice",
     "question": "When removing a package on a system using dpkg package management, which dpkg option ensures configuration files are removed as well?",
     "options": [
@@ -918,6 +985,7 @@
     ]
   },
   {
+    "index": 67,
     "questionType": "multiple-choice",
     "question": "Which of the following statements are correct when comparing Linux containers with traditional virtual machines (e.g. LXC vs. KVM)? (Choose three.)",
     "options": [
@@ -934,6 +1002,7 @@
     ]
   },
   {
+    "index": 68,
     "questionType": "single-choice",
     "question": "The installation of a local Debian package failed due to unsatisfied dependencies. Which of the following commands installs missing dependencies and completes the interrupted package installation?",
     "options": [
@@ -948,6 +1017,7 @@
     ]
   },
   {
+    "index": 69,
     "questionType": "single-choice",
     "question": "Which of the following commands lists all currently installed packages when using RPM package management?",
     "options": [
@@ -962,6 +1032,7 @@
     ]
   },
   {
+    "index": 70,
     "questionType": "multiple-choice",
     "question": "Which of the following commands are valid in the GRUB 2 configuration file? (Choose two.)",
     "options": [
@@ -977,6 +1048,7 @@
     ]
   },
   {
+    "index": 71,
     "questionType": "single-choice",
     "question": "What is the purpose of the ldd command?",
     "options": [
@@ -991,6 +1063,7 @@
     ]
   },
   {
+    "index": 72,
     "questionType": "multiple-choice",
     "question": "What can the Logical Volume Manager (LVM) be used for? (Choose three.)",
     "options": [
@@ -1007,6 +1080,7 @@
     ]
   },
   {
+    "index": 73,
     "questionType": "multiple-choice",
     "question": "What are the main differences between GPT and MBR partition tables regarding maximum number and size of partitions? (Choose two.)",
     "options": [
@@ -1022,6 +1096,7 @@
     ]
   },
   {
+    "index": 74,
     "questionType": "multiple-choice",
     "question": "A backup software heavily uses hard links between files which have not been changed in between two backup runs. Which benefits are realized due to these hard links? (Choose two.)",
     "options": [
@@ -1037,6 +1112,7 @@
     ]
   },
   {
+    "index": 75,
     "questionType": "fill-in",
     "question": "Which file from the /proc/ filesystem contains a list of all currently mounted devices? (Specify the full name of the file, including path.)",
     "options": [],
@@ -1045,6 +1121,7 @@
     ]
   },
   {
+    "index": 76,
     "questionType": "single-choice",
     "question": "How many fields are in a syntactically correct line of /etc/fstab?",
     "options": [
@@ -1059,6 +1136,7 @@
     ]
   },
   {
+    "index": 77,
     "questionType": "multiple-choice",
     "question": "Running chmod 640 filea.txt as a regular user doesn\u2019t update filea.txt\u2019s permission. What might be a reason why chmod cannot modify the permissions? (Choose two.)",
     "options": [
@@ -1074,6 +1152,7 @@
     ]
   },
   {
+    "index": 78,
     "questionType": "multiple-choice",
     "question": "Which of the following Linux filesystems preallocate a fixed number of inodes when creating a new filesystem instead of generating them as needed? (Choose two.)",
     "options": [
@@ -1089,6 +1168,7 @@
     ]
   },
   {
+    "index": 79,
     "questionType": "single-choice",
     "question": "Which of the following commands sets the SetUID permission on the executable /bin/foo?",
     "options": [
@@ -1103,6 +1183,7 @@
     ]
   },
   {
+    "index": 80,
     "questionType": "multiple-choice",
     "question": "Which of the following commands can be used to display the inode number of a given file? (Choose two.)",
     "options": [
@@ -1118,6 +1199,7 @@
     ]
   },
   {
+    "index": 81,
     "questionType": "single-choice",
     "question": "Which of the following settings for umask ensures that new files have the default permissions -rw-r-----?",
     "options": [
@@ -1132,6 +1214,7 @@
     ]
   },
   {
+    "index": 82,
     "questionType": "single-choice",
     "question": "After a power outage, the XFS file system of /dev/sda3 is inconsistent. How can the existing file system errors be fixed?",
     "options": [
@@ -1146,6 +1229,7 @@
     ]
   },
   {
+    "index": 83,
     "questionType": "single-choice",
     "question": "Which of the following properties of an existing file changes when a hard link pointing to that file is created?",
     "options": [
@@ -1160,6 +1244,7 @@
     ]
   },
   {
+    "index": 84,
     "questionType": "fill-in",
     "question": "Following the Filesystem Hierarchy Standard (FHS), where should binaries that have been compiled by the system administrator be placed in order to be made available to all users on the system? (Specify the full path to the directory.)",
     "options": [],
@@ -1168,6 +1253,7 @@
     ]
   },
   {
+    "index": 85,
     "questionType": "single-choice",
     "question": "Which of the following commands show how the shell handles a specific command?",
     "options": [
@@ -1182,6 +1268,7 @@
     ]
   },
   {
+    "index": 86,
     "questionType": "single-choice",
     "question": "When in Normal mode in vi, which character can be used to begin a reverse search of the text?",
     "options": [
@@ -1196,6 +1283,7 @@
     ]
   },
   {
+    "index": 87,
     "questionType": "single-choice",
     "question": "Which of the following commands displays the manual page command from section 1?",
     "options": [
@@ -1210,6 +1298,7 @@
     ]
   },
   {
+    "index": 88,
     "questionType": "single-choice",
     "question": "Which of the following commands creates or, in case it already exists, overwrites a file called data with the output of ls?",
     "options": [
@@ -1224,6 +1313,7 @@
     ]
   },
   {
+    "index": 89,
     "questionType": "single-choice",
     "question": "Which of the following commands is used to change options and positional parameters within a running Bash shell?",
     "options": [
@@ -1238,6 +1328,7 @@
     ]
   },
   {
+    "index": 90,
     "questionType": "multiple-choice",
     "question": "Which of the following commands display the IDs of all processes owned by root? (Choose two.)",
     "options": [
@@ -1253,6 +1344,7 @@
     ]
   },
   {
+    "index": 91,
     "questionType": "multiple-choice",
     "question": "Which of the following sequences in the vi editor saves the opened document and exits the editor? (Choose two.)",
     "options": [
@@ -1268,6 +1360,7 @@
     ]
   },
   {
+    "index": 92,
     "questionType": "single-choice",
     "question": "What is the effect of the -v option for the grep command?",
     "options": [
@@ -1282,6 +1375,7 @@
     ]
   },
   {
+    "index": 93,
     "questionType": "multiple-choice",
     "question": "Which of the following tools can show the complete path of an executable file that the current shell would execute when starting a command without specifying its complete path? (Choose two.)",
     "options": [
@@ -1297,6 +1391,7 @@
     ]
   },
   {
+    "index": 94,
     "questionType": "single-choice",
     "question": "Which of the following signals is sent to a process when the key combination Ctrl+Z is pressed on the keyboard?",
     "options": [
@@ -1311,6 +1406,7 @@
     ]
   },
   {
+    "index": 95,
     "questionType": "single-choice",
     "question": "What is the output when the regular expression 's/[ABC][abc]/xx/' is applied to the following string? ABCabc",
     "options": [
@@ -1325,6 +1421,7 @@
     ]
   },
   {
+    "index": 96,
     "questionType": "multiple-choice",
     "question": "Which of the following commands print the current working directory when using a Bash shell? (Choose two.)",
     "options": [
@@ -1340,6 +1437,7 @@
     ]
   },
   {
+    "index": 97,
     "questionType": "single-choice",
     "question": "Which of the following commands outputs test to the shell? ++++++++++++++++++++++++++++++++++++++++++++++++++",
     "options": [
@@ -1354,6 +1452,7 @@
     ]
   },
   {
+    "index": 98,
     "questionType": "single-choice",
     "question": "What is the default nice level when a process is started using the nice command?",
     "options": [
@@ -1368,6 +1467,7 @@
     ]
   },
   {
+    "index": 99,
     "questionType": "single-choice",
     "question": "A user accidentally created the subdirectory \\dir in his home directory. Which of the following commands will remove that directory?",
     "options": [
@@ -1382,6 +1482,7 @@
     ]
   },
   {
+    "index": 100,
     "questionType": "single-choice",
     "question": "Which of the following commands can perform searches on file contents using regular expressions?",
     "options": [
@@ -1396,6 +1497,7 @@
     ]
   },
   {
+    "index": 101,
     "questionType": "single-choice",
     "question": "In a nested directory structure, which find command line option would be used to restrict the command to searching down a particular number of subdirectories?",
     "options": [
@@ -1410,6 +1512,7 @@
     ]
   },
   {
+    "index": 102,
     "questionType": "single-choice",
     "question": "Which of the following commands determines a file\u2019s format by using a definition database file which contains information about all common file types?",
     "options": [
@@ -1424,6 +1527,7 @@
     ]
   },
   {
+    "index": 103,
     "questionType": "single-choice",
     "question": "Which of the following commands generates a list of user names from /etc/passwd along with their login shell?",
     "options": [
@@ -1438,6 +1542,7 @@
     ]
   },
   {
+    "index": 104,
     "questionType": "single-choice",
     "question": "If the gzip compressed tar archive texts.tgz contains the files a.txt and b.txt, which files will be present in the current directory after running gunzip texts.tgz?",
     "options": [
@@ -1452,6 +1557,7 @@
     ]
   },
   {
+    "index": 105,
     "questionType": "single-choice",
     "question": "In the vi editor, how can commands such as moving the cursor or copying lines into the buffer be issued multiple times or applied to multiple rows?",
     "options": [
@@ -1466,6 +1572,7 @@
     ]
   },
   {
+    "index": 106,
     "questionType": "single-choice",
     "question": "Which of the following statements is correct for a command ending with an & character?",
     "options": [
@@ -1480,6 +1587,7 @@
     ]
   },
   {
+    "index": 107,
     "questionType": "single-choice",
     "question": "Which of the following commands reads a file and creates separate chunks of a given size from the file\u2019s contents?",
     "options": [
@@ -1494,6 +1602,7 @@
     ]
   },
   {
+    "index": 108,
     "questionType": "single-choice",
     "question": "What is the purpose of the xargs command?",
     "options": [
@@ -1508,6 +1617,7 @@
     ]
   },
   {
+    "index": 109,
     "questionType": "fill-in",
     "question": "Which command displays a list of all background tasks running in the current shell? (Specify ONLY the command without any path or parameters.)",
     "options": [],
@@ -1516,6 +1626,7 @@
     ]
   },
   {
+    "index": 110,
     "questionType": "fill-in",
     "question": "Which command is used to change the priority of an already running process? (Specify ONLY the command without any path or parameters.)",
     "options": [],
@@ -1524,6 +1635,7 @@
     ]
   },
   {
+    "index": 111,
     "questionType": "single-choice",
     "question": "In Bash, inserting 1>&2 after a command redirects\u2026",
     "options": [
@@ -1538,6 +1650,7 @@
     ]
   },
   {
+    "index": 112,
     "questionType": "single-choice",
     "question": "When booting from the hard disk, a computer successfully loads the Linux kernel and initramfs but hangs during the subsequent startup tasks. The system is booted using a Linux based rescue CD to investigate the problem. Which of the following methods helps to identify the root cause of the problem?",
     "options": [
@@ -1552,6 +1665,7 @@
     ]
   },
   {
+    "index": 113,
     "questionType": "single-choice",
     "question": "Where is the bootloader stored on the hard disk of a UEFI system?",
     "options": [
@@ -1566,6 +1680,7 @@
     ]
   },
   {
+    "index": 114,
     "questionType": "single-choice",
     "question": "What is the correct way to set the default systemd boot target to multi-user?",
     "options": [
@@ -1580,6 +1695,7 @@
     ]
   },
   {
+    "index": 115,
     "questionType": "multiple-choice",
     "question": "Which of the following statements are correct about the initial RAM disk involved in the boot process of Linux? (Choose two.)",
     "options": [
@@ -1595,6 +1711,7 @@
     ]
   },
   {
+    "index": 116,
     "questionType": "single-choice",
     "question": "Which of the following commands loads a kernel module along with any required dependency modules?",
     "options": [
@@ -1609,6 +1726,7 @@
     ]
   },
   {
+    "index": 117,
     "questionType": "multiple-choice",
     "question": "What information can the lspci command display about the system hardware? (Choose three.)",
     "options": [
@@ -1625,6 +1743,7 @@
     ]
   },
   {
+    "index": 118,
     "questionType": "fill-in",
     "question": "Which System V init configuration file is commonly used to set the default run level? (Specify the full name of the file, including path.)",
     "options": [],
@@ -1633,6 +1752,7 @@
     ]
   },
   {
+    "index": 119,
     "questionType": "multiple-choice",
     "question": "Given the following two symbolic links in a System V init configuration: /etc/rc1.d/K01apache2 /etc/rc2.d/S02apache2 When are the scripts executed that are referenced by these links? (Choose two.)",
     "options": [

@@ -9,7 +9,7 @@ class QuestionType(Enum):
     MULTIPLE_CHOICE = "multiple-choice"
     FILL_IN = "fill-in"
 
-input_file_path = r'C:\Users\test\Desktop\Angular\Angular_Learning\angularProject\LPC1-APP\Draw-IO-Story\questions.txt'
+input_file_path = 'angularProject/LPC1-APP/Draw-IO-Story/questions.txt'
 output_file_path = os.path.join(os.path.dirname(input_file_path), 'output.json')
 
 # Read the input text file
@@ -24,10 +24,11 @@ questions = [q.strip() for q in questions if q.strip()]
 parsed_questions = []
 
 # Parse each question and create a dictionary for JSON
-for question_text in questions:
+for index, question_text in enumerate(questions):
     lines = question_text.splitlines()
 
     question_data = {
+        "index": index,
         "questionType": "",
         "question": "",
         "options": [],

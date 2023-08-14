@@ -1,0 +1,22 @@
+<div *ngIf="question$ | async as q">
+  <div class="listItem" style="border: 5px solid rgba(128, 128, 128, 0.573);border-radius: 5px; padding: 10px;padding-bottom: 2em; margin-bottom: 10px;">
+    <h3>{{q.question}}</h3>
+    <ul>
+      <li *ngFor="let o of q.options">
+        <p>{{o}}</p>
+      </li>
+    </ul>
+    <div style="height: 3em;">
+      <button (click)="showAnswer(q)">Show Answer</button>
+      <p *ngIf="q.showAnswer">
+        <strong>Answer: </strong>{{q.correctAnswer}}
+      </p>
+    </div>
+  </div>
+  <br>
+  <br>
+  <button (click)="showNextQuestion(q)">Next Question</button>
+  <div *ngIf="lastQswitch" style="color: red;">
+    <h6>{{lastQError}}</h6>
+  </div>
+</div>

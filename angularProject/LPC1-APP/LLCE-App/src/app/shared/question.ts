@@ -1,4 +1,5 @@
 export interface Question {
+  index: string;
   questionType: string;
   question: string;
   options: string[];
