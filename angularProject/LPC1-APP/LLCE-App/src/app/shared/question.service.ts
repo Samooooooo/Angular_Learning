@@ -9,6 +9,8 @@ import { Question } from './question';
 export class QuestionService {
   private jsonFilePath = 'assets/output.json';
 
+  questions: Question[] = [];
+
   constructor(private http: HttpClient) {}
 
   getQuestions(): Observable<Question[]> {

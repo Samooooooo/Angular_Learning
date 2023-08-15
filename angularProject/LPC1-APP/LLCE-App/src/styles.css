@@ -28,3 +28,6 @@ button:focus {
 button:active {
   background-color: #1f6eb8;
 }
+li {
+  list-style: none;
+}
