@@ -7,14 +7,13 @@ import { QuestionService } from 'src/app/shared/question.service';
 @Component({
   selector: 'lpc-question-details',
   templateUrl: './question-details.component.html',
-  styleUrls: ['./question-details.component.css']
+  styleUrls: ['./question-details.component.css'],
 })
 export class QuestionDetailsComponent {
   question$: Observable<Question>;
   questions$: Observable<Question[]>;
-  lastQError = "No more Questions";
+  lastQError = 'No more Questions';
   lastQswitch = false;
-
 
   constructor(
     private service: QuestionService,
@@ -31,7 +30,8 @@ export class QuestionDetailsComponent {
   }
   showNextQuestion(question: Question) {
     const nextIndex = (parseInt(question.index) + 1).toString();
-    this.questions$.subscribe(questions => {
+    this.questions$.subscribe((questions) => {
+      this.lastQswitch = false;
       if (parseInt(nextIndex) == questions.length) {
         this.lastQswitch = true;
       } else {
@@ -40,4 +40,14 @@ export class QuestionDetailsComponent {
       }
     });
   }
-} 1
+  showPreviosQuestion(question: Question) {
+    const PreviosIndex = (parseInt(question.index) - 1).toString();
+    this.lastQswitch = false;
+    if (parseInt(PreviosIndex) < 0) {
+      this.lastQswitch = true;
+    } else {
+      this.question$ = this.service.getSingle(PreviosIndex);
+      this.router.navigate(['learn', PreviosIndex]);
+    }
+  }
+}

@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { CheckRoutingModule } from './check-routing.module';
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    CheckRoutingModule
-  ]
+  imports: [CommonModule, CheckRoutingModule],
 })
-export class CheckModule { }
+export class CheckModule {}

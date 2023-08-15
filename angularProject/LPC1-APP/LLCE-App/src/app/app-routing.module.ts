@@ -13,15 +13,24 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
-  { path: 'check', loadChildren: () => import('./check/check.module').then(m => m.CheckModule) },
-  { path: 'exam', loadChildren: () => import('./exam/exam.module').then(m => m.ExamModule) },
-  { path: 'learn', loadChildren: () => import('./learn/learn.module').then(m => m.LearnModule) },
-
+  {
+    path: 'check',
+    loadChildren: () =>
+      import('./check/check.module').then((m) => m.CheckModule),
+  },
+  {
+    path: 'exam',
+    loadChildren: () => import('./exam/exam.module').then((m) => m.ExamModule),
+  },
+  {
+    path: 'learn',
+    loadChildren: () =>
+      import('./learn/learn.module').then((m) => m.LearnModule),
+  },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

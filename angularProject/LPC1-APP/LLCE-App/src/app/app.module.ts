@@ -11,11 +11,7 @@ import { CheckModule } from './check/check.module';
 import { ExamModule } from './exam/exam.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    HeaderComponent
-  ],
+  declarations: [AppComponent, HomeComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +21,6 @@ import { ExamModule } from './exam/exam.module';
     ExamModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

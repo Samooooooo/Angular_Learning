@@ -3,31 +3,15 @@
     "index": 0,
     "questionType": "single-choice",
     "question": "Which type of file system is created by mkfs when it is executed with the block device name only and without any additional parameters?",
-    "options": [
-      "A. XFS",
-      "B. VFAT",
-      "C. ext2",
-      "D. ext3",
-      "E. ext4"
-    ],
-    "correctAnswer": [
-      "C"
-    ]
+    "options": ["A. XFS", "B. VFAT", "C. ext2", "D. ext3", "E. ext4"],
+    "correctAnswer": ["C"]
   },
   {
     "index": 1,
     "questionType": "single-choice",
     "question": "Which umask value ensures that new directories can be read, written and listed by their owning user, read and listed by their owning group and are not accessible at all for everyone else?",
-    "options": [
-      "A. 0750",
-      "B. 0027",
-      "C. 0036",
-      "D. 7640",
-      "E. 0029"
-    ],
-    "correctAnswer": [
-      "B"
-    ]
+    "options": ["A. 0750", "B. 0027", "C. 0036", "D. 7640", "E. 0029"],
+    "correctAnswer": ["B"]
   },
   {
     "index": 2,
@@ -40,24 +24,14 @@
       "D. tune2fs -n 200 /dev/sda1",
       "E. tune2fs --days 200 /dev/sda1"
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 3,
     "questionType": "single-choice",
     "question": "Which is the default percentage of reserved space for the root user on new ext4 filesystems?",
-    "options": [
-      "A. 10%",
-      "B. 3%",
-      "C. 15%",
-      "D. 0%",
-      "E. 5%"
-    ],
-    "correctAnswer": [
-      "E"
-    ]
+    "options": ["A. 10%", "B. 3%", "C. 15%", "D. 0%", "E. 5%"],
+    "correctAnswer": ["E"]
   },
   {
     "index": 4,
@@ -70,18 +44,14 @@
       "D. Unless a systemd mount unit is created, systemd unmounts the file system after a short period of time",
       "E. systemctl unmount must be used to remove the mount because system opens a file descriptor on the mount point"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 5,
     "questionType": "fill-in",
     "question": "Which program updates the database that is used by the locate command? (Specify ONLY the command without any path or parameters).",
     "options": [],
-    "correctAnswer": [
-      "updatedb"
-    ]
+    "correctAnswer": ["updatedb"]
   },
   {
     "index": 6,
@@ -94,9 +64,7 @@
       "D. It mounts all file systems listed in /etc/fstab which have the option userbindset",
       "E. It permanently mounts a regular file to a directory"
     ],
-    "correctAnswer": [
-      "A"
-    ]
+    "correctAnswer": ["A"]
   },
   {
     "index": 7,
@@ -109,9 +77,7 @@
       "D. ln -f c.txt a.txt",
       "E. ln -i 525385 c.txt"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 8,
@@ -124,10 +90,7 @@
       "D. chown --persistent *.sales sales",
       "E. chmod 2775 sales"
     ],
-    "correctAnswer": [
-      "A",
-      "E"
-    ]
+    "correctAnswer": ["A", "E"]
   },
   {
     "index": 9,
@@ -140,19 +103,14 @@
       "D. mount",
       "E. cat /proc/filesystems"
     ],
-    "correctAnswer": [
-      "A",
-      "D"
-    ]
+    "correctAnswer": ["A", "D"]
   },
   {
     "index": 10,
     "questionType": "fill-in",
     "question": "Which command displays the current disk space usage for all mounted file systems? (Specify ONLY the command without any path or parameters.)",
     "options": [],
-    "correctAnswer": [
-      "df"
-    ]
+    "correctAnswer": ["df"]
   },
   {
     "index": 11,
@@ -165,9 +123,7 @@
       "D. chown dave+staff data.txt",
       "E. chown dave:staff data.txt"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 12,
@@ -180,9 +136,7 @@
       "D. If users other than root should be able to create hard links, suln has to be installed and configured",
       "E. When a hard linked file is changed, a copy of the file is created and consumes additional space"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 13,
@@ -195,18 +149,14 @@
       "D. /var/pkg/man",
       "E. /var/man/"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 14,
     "questionType": "fill-in",
     "question": "Which file in the /proc filesystem lists parameters passed from the bootloader to the kernel? (Specify the file name only without any path.)",
     "options": [],
-    "correctAnswer": [
-      "cmdline"
-    ]
+    "correctAnswer": ["cmdline"]
   },
   {
     "index": 15,
@@ -219,24 +169,14 @@
       "D. It is different with each reboot",
       "E. It is set to the current run level"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 16,
     "questionType": "single-choice",
     "question": "Which daemon handles power management events on a Linux system?",
-    "options": [
-      "A. acpid",
-      "B. batteryd",
-      "C. pwrmgntd",
-      "D. psd",
-      "E. inetd"
-    ],
-    "correctAnswer": [
-      "A"
-    ]
+    "options": ["A. acpid", "B. batteryd", "C. pwrmgntd", "D. psd", "E. inetd"],
+    "correctAnswer": ["A"]
   },
   {
     "index": 17,
@@ -249,10 +189,7 @@
       "D. The BIOS initiates the boot process after turning the computer on",
       "E. The BIOS is started by loading hardware drivers from secondary storage, such as the hard disk"
     ],
-    "correctAnswer": [
-      "A",
-      "D"
-    ]
+    "correctAnswer": ["A", "D"]
   },
   {
     "index": 18,
@@ -265,10 +202,7 @@
       "D. It is stored in a special area within the GPT metadata",
       "E. It is loaded from a fixed boot disk position"
     ],
-    "correctAnswer": [
-      "A",
-      "B"
-    ]
+    "correctAnswer": ["A", "B"]
   },
   {
     "index": 19,
@@ -281,9 +215,7 @@
       "D. Adding a blacklist line including the name of the offending module to the file /etc/modprobe.d/blacklist.conf",
       "E. Deleting the kernel module\u2019s directory from the file system and recompiling the kernel, including its modules"
     ],
-    "correctAnswer": [
-      "D"
-    ]
+    "correctAnswer": ["D"]
   },
   {
     "index": 20,
@@ -296,10 +228,7 @@
       "D. When the kernel loads a previously unloaded kernel module",
       "E. When the system is shut down or rebooted"
     ],
-    "correctAnswer": [
-      "A",
-      "E"
-    ]
+    "correctAnswer": ["A", "E"]
   },
   {
     "index": 21,
@@ -312,9 +241,7 @@
       "D. /sbin/init",
       "E. /boot/init"
     ],
-    "correctAnswer": [
-      "D"
-    ]
+    "correctAnswer": ["D"]
   },
   {
     "index": 22,
@@ -327,9 +254,7 @@
       "D. dpkg -S  /etc/debian_version",
       "E. apt-file /etc/debian_version"
     ],
-    "correctAnswer": [
-      "D"
-    ]
+    "correctAnswer": ["D"]
   },
   {
     "index": 23,
@@ -342,9 +267,7 @@
       "D. The Linux default shell binaries",
       "E. The user home directories"
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 24,
@@ -357,10 +280,7 @@
       "D. /lib64/",
       "E. /opt/lib64/"
     ],
-    "correctAnswer": [
-      "B",
-      "D"
-    ]
+    "correctAnswer": ["B", "D"]
   },
   {
     "index": 25,
@@ -373,10 +293,7 @@
       "D. /boot/grub/grub.cfg",
       "E. /boot/grub/linux/vmlinuz"
     ],
-    "correctAnswer": [
-      "B",
-      "D"
-    ]
+    "correctAnswer": ["B", "D"]
   },
   {
     "index": 26,
@@ -389,9 +306,7 @@
       "D. zypper install \"*foo\"",
       "E. zypper add \".*foo\""
     ],
-    "correctAnswer": [
-      "D"
-    ]
+    "correctAnswer": ["D"]
   },
   {
     "index": 27,
@@ -404,10 +319,7 @@
       "D. The permissions of /root/",
       "E. The SSH host keys"
     ],
-    "correctAnswer": [
-      "C",
-      "E"
-    ]
+    "correctAnswer": ["C", "E"]
   },
   {
     "index": 28,
@@ -420,24 +332,14 @@
       "D. grub-setup /dev/sdc",
       "E. grub-install /dev/sdc"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 29,
     "questionType": "single-choice",
     "question": "Which of the following partition types is used for Linux swap spaces when partitioning hard disk drives?",
-    "options": [
-      "A. 7",
-      "B. 82",
-      "C. 83",
-      "D. 8e",
-      "E. fd"
-    ],
-    "correctAnswer": [
-      "B"
-    ]
+    "options": ["A. 7", "B. 82", "C. 83", "D. 8e", "E. fd"],
+    "correctAnswer": ["B"]
   },
   {
     "index": 30,
@@ -450,10 +352,7 @@
       "D. Repository configurations can include variables such as $basearch or $releasever",
       "E. In case /etc/yum.repos.d/ contains files, /etc/yum.config ignored"
     ],
-    "correctAnswer": [
-      "C",
-      "D"
-    ]
+    "correctAnswer": ["C", "D"]
   },
   {
     "index": 31,
@@ -466,9 +365,7 @@
       "D. install",
       "E. update"
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 32,
@@ -481,9 +378,7 @@
       "D. dpkg -v pkgname",
       "E. dpkg -r pkgname"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 33,
@@ -496,24 +391,14 @@
       "D. rpm -R foo.rpm",
       "E. rpm -pD foo"
     ],
-    "correctAnswer": [
-      "A"
-    ]
+    "correctAnswer": ["A"]
   },
   {
     "index": 34,
     "questionType": "single-choice",
     "question": "What is the maximum niceness value that a regular user can assign to a process with the nice command when executing a new process?",
-    "options": [
-      "A. 9",
-      "B. 15",
-      "C. 19",
-      "D. 49",
-      "E. 99"
-    ],
-    "correctAnswer": [
-      "C"
-    ]
+    "options": ["A. 9", "B. 15", "C. 19", "D. 49", "E. 99"],
+    "correctAnswer": ["C"]
   },
   {
     "index": 35,
@@ -526,41 +411,21 @@
       "D. find /tmp -user root",
       "E. find -path /tmp -user root -print"
     ],
-    "correctAnswer": [
-      "A",
-      "D"
-    ]
+    "correctAnswer": ["A", "D"]
   },
   {
     "index": 36,
     "questionType": "multiple-choice",
     "question": "Which of the following are valid stream redirection operators within Bash? (Choose two.)",
-    "options": [
-      "A. <",
-      "B. #>",
-      "C. %>",
-      "D. >>>",
-      "E. 2>&1"
-    ],
-    "correctAnswer": [
-      "A",
-      "E"
-    ]
+    "options": ["A. <", "B. #>", "C. %>", "D. >>>", "E. 2>&1"],
+    "correctAnswer": ["A", "E"]
   },
   {
     "index": 37,
     "questionType": "single-choice",
     "question": "Which of the following vi commands deletes two lines, the current and the following line?",
-    "options": [
-      "A. d2",
-      "B. 2d",
-      "C. 2dd",
-      "D. dd2",
-      "E. de12"
-    ],
-    "correctAnswer": [
-      "C"
-    ]
+    "options": ["A. d2", "B. 2d", "C. 2dd", "D. dd2", "E. de12"],
+    "correctAnswer": ["C"]
   },
   {
     "index": 38,
@@ -573,9 +438,7 @@
       "D. bg dbmaint",
       "E. wait dbmaint"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 39,
@@ -588,19 +451,14 @@
       "D. .  /usr/local/bin/runme.sh",
       "E. run /usr/local/bin/runme.sh"
     ],
-    "correctAnswer": [
-      "A",
-      "D"
-    ]
+    "correctAnswer": ["A", "D"]
   },
   {
     "index": 40,
     "questionType": "fill-in",
     "question": "Which program runs a command in specific intervals and refreshes the display of the program\u2019s output? (Specify ONLY the command without any path or parameters.)",
     "options": [],
-    "correctAnswer": [
-      "watch"
-    ]
+    "correctAnswer": ["watch"]
   },
   {
     "index": 41,
@@ -613,9 +471,7 @@
       "D. U (uppercase)",
       "E. u (lowercase)"
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 42,
@@ -628,9 +484,7 @@
       "D. tr '\\r' '\\n' userlist.txt newlist.txt",
       "E. tr -s '/^M/^J/' userlist.txt newlist.txt"
     ],
-    "correctAnswer": [
-      "A"
-    ]
+    "correctAnswer": ["A"]
   },
   {
     "index": 43,
@@ -643,9 +497,7 @@
       "D. s/^txt$/.bak^/",
       "E. s/[.txt]/.bak$1/"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 44,
@@ -658,9 +510,7 @@
       "D. :w filea.txt",
       "E. :s filea.txt"
     ],
-    "correctAnswer": [
-      "D"
-    ]
+    "correctAnswer": ["D"]
   },
   {
     "index": 45,
@@ -673,9 +523,7 @@
       "D. SIGKILL",
       "E. SIGINT"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 46,
@@ -688,9 +536,7 @@
       "D. foo | tee /tmp/foodata",
       "E. foo > stdout >> /tmp/foodata"
     ],
-    "correctAnswer": [
-      "D"
-    ]
+    "correctAnswer": ["D"]
   },
   {
     "index": 47,
@@ -703,9 +549,7 @@
       "D. fred $USER",
       "E. 'fred fred\u2019"
     ],
-    "correctAnswer": [
-      "D"
-    ]
+    "correctAnswer": ["D"]
   },
   {
     "index": 48,
@@ -718,9 +562,7 @@
       "D. whatis foo",
       "E. which foo"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 49,
@@ -733,25 +575,14 @@
       "D. -ignore-space",
       "E. -print0"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 50,
     "questionType": "multiple-choice",
     "question": "Which of the following commands can be used to determine how long the system has been running? (Choose two.)",
-    "options": [
-      "A. uptime",
-      "B. up",
-      "C. time --up",
-      "D. uname -u",
-      "E. top"
-    ],
-    "correctAnswer": [
-      "A",
-      "E"
-    ]
+    "options": ["A. uptime", "B. up", "C. time --up", "D. uname -u", "E. top"],
+    "correctAnswer": ["A", "E"]
   },
   {
     "index": 51,
@@ -764,9 +595,7 @@
       "D. The command files is executed and receives the output of ls",
       "E. Any output of ls is discarded"
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 52,
@@ -779,9 +608,7 @@
       "D. .bash_history",
       "E. .history_bash"
     ],
-    "correctAnswer": [
-      "D"
-    ]
+    "correctAnswer": ["D"]
   },
   {
     "index": 53,
@@ -794,10 +621,7 @@
       "D. tty[A-Z][012]",
       "E. tty[Ss][02]"
     ],
-    "correctAnswer": [
-      "B",
-      "D"
-    ]
+    "correctAnswer": ["B", "D"]
   },
   {
     "index": 54,
@@ -810,9 +634,7 @@
       "D. ls >>2",
       "E. ls |error"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 55,
@@ -825,9 +647,7 @@
       "D. tar cf archive.tgz",
       "E. tar ztf archive.tgz"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 56,
@@ -840,33 +660,21 @@
       "D. paste -f 1,4 /etc/passwd",
       "E. split -c 1,4 /etc/passwd"
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 57,
     "questionType": "single-choice",
     "question": "Which of the following regular expressions represents a single upper-case letter?",
-    "options": [
-      "A. :UPPER:",
-      "B. [A-Z]",
-      "C. !a-z",
-      "D. %C",
-      "E. {AZ}"
-    ],
-    "correctAnswer": [
-      "B"
-    ]
+    "options": ["A. :UPPER:", "B. [A-Z]", "C. !a-z", "D. %C", "E. {AZ}"],
+    "correctAnswer": ["B"]
   },
   {
     "index": 58,
     "questionType": "fill-in",
     "question": "Which command is used to start another command with a given nice level? (Specify ONLY the command without any path or parameters.)",
     "options": [],
-    "correctAnswer": [
-      "nice"
-    ]
+    "correctAnswer": ["nice"]
   },
   {
     "index": 59,
@@ -879,25 +687,14 @@
       "D. grep loga.log ':08:[0-9]:[0-9]\u2019",
       "E. grep -E ':08:[0-9]+:[0-9]+\u2019 loga.log"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 60,
     "questionType": "multiple-choice",
     "question": "Instead of supplying an explicit device in /etc/fstab for mounting, what other options may be used to identify the intended partition? (Choose two.)",
-    "options": [
-      "A. LABEL",
-      "B. ID",
-      "C. FIND",
-      "D. NAME",
-      "E. UUID"
-    ],
-    "correctAnswer": [
-      "A",
-      "E"
-    ]
+    "options": ["A. LABEL", "B. ID", "C. FIND", "D. NAME", "E. UUID"],
+    "correctAnswer": ["A", "E"]
   },
   {
     "index": 61,
@@ -910,18 +707,14 @@
       "D. yum taskinstall admintools",
       "E. yum collection install admintools"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 62,
     "questionType": "fill-in",
     "question": "What directory contains configuration files for additional yum repositories? (Specify the full path to the directory.)",
     "options": [],
-    "correctAnswer": [
-      "/etc/yum.repos.d"
-    ]
+    "correctAnswer": ["/etc/yum.repos.d"]
   },
   {
     "index": 63,
@@ -934,9 +727,7 @@
       "D. grub-install /dev/sda0",
       "E. grub-install current /dev/sda1"
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 64,
@@ -949,10 +740,7 @@
       "D. Initial ramdisk images",
       "E. fsck binaries"
     ],
-    "correctAnswer": [
-      "A",
-      "D"
-    ]
+    "correctAnswer": ["A", "D"]
   },
   {
     "index": 65,
@@ -965,9 +753,7 @@
       "D. /etc/dpkg/dselect.cfg",
       "E. /etc/apt/sources.list"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 66,
@@ -980,9 +766,7 @@
       "D. --remove",
       "E. --declare"
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 67,
@@ -995,11 +779,7 @@
       "D. The guest environment for fully virtualized machines is created by a hypervisor which provides virtual and emulated hardware devices.",
       "E. Containers on the same host can use different operating systems, as the container hypervisor creates separate kernel execution."
     ],
-    "correctAnswer": [
-      "A",
-      "B",
-      "D"
-    ]
+    "correctAnswer": ["A", "B", "D"]
   },
   {
     "index": 68,
@@ -1012,9 +792,7 @@
       "D. apt-get all",
       "E. apt-get install -f"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 69,
@@ -1027,9 +805,7 @@
       "D. rpm --list --installed",
       "E. rpm --query --all"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 70,
@@ -1042,10 +818,7 @@
       "D. insmod",
       "E. kpartx"
     ],
-    "correctAnswer": [
-      "A",
-      "D"
-    ]
+    "correctAnswer": ["A", "D"]
   },
   {
     "index": 71,
@@ -1058,9 +831,7 @@
       "D. It defines which version of a library should be used by default.",
       "E. It runs a binary with an alternate library search path."
     ],
-    "correctAnswer": [
-      "A"
-    ]
+    "correctAnswer": ["A"]
   },
   {
     "index": 72,
@@ -1073,11 +844,7 @@
       "D. To create RAID 9 arrays.",
       "E. To encrypt logical volumes."
     ],
-    "correctAnswer": [
-      "A",
-      "B",
-      "C"
-    ]
+    "correctAnswer": ["A", "B", "C"]
   },
   {
     "index": 73,
@@ -1090,10 +857,7 @@
       "D. MBR can handle partition sizes up to 2.2 TB, whereas GPT supports sizes up to 9.4 ZB.",
       "E. Both GPT and MBR support up to four primary partitions, each with up to 4096 TB."
     ],
-    "correctAnswer": [
-      "B",
-      "D"
-    ]
+    "correctAnswer": ["B", "D"]
   },
   {
     "index": 74,
@@ -1106,34 +870,21 @@
       "D. The backup consumes less space because the hard links point to the same data on disk instead of storing redundant copies.",
       "E. The backup runs faster because, instead of copying the data of each file, hard links only change file system meta data."
     ],
-    "correctAnswer": [
-      "D",
-      "E"
-    ]
+    "correctAnswer": ["D", "E"]
   },
   {
     "index": 75,
     "questionType": "fill-in",
     "question": "Which file from the /proc/ filesystem contains a list of all currently mounted devices? (Specify the full name of the file, including path.)",
     "options": [],
-    "correctAnswer": [
-      "/proc/mounts"
-    ]
+    "correctAnswer": ["/proc/mounts"]
   },
   {
     "index": 76,
     "questionType": "single-choice",
     "question": "How many fields are in a syntactically correct line of /etc/fstab?",
-    "options": [
-      "A. 3",
-      "B. 4",
-      "C. 5",
-      "D. 6",
-      "E. 7"
-    ],
-    "correctAnswer": [
-      "D"
-    ]
+    "options": ["A. 3", "B. 4", "C. 5", "D. 6", "E. 7"],
+    "correctAnswer": ["D"]
   },
   {
     "index": 77,
@@ -1146,26 +897,14 @@
       "D. filea.txt is a hard link whose permissions are inherited from the target and cannot be set directly.",
       "E. filea.txt has the SetUID bit set which imposes the restriction that only the root user can make changes to the file."
     ],
-    "correctAnswer": [
-      "A",
-      "B"
-    ]
+    "correctAnswer": ["A", "B"]
   },
   {
     "index": 78,
     "questionType": "multiple-choice",
     "question": "Which of the following Linux filesystems preallocate a fixed number of inodes when creating a new filesystem instead of generating them as needed? (Choose two.)",
-    "options": [
-      "A. JFS",
-      "B. ext3",
-      "C. XFS",
-      "D. ext2",
-      "E. procfs"
-    ],
-    "correctAnswer": [
-      "B",
-      "D"
-    ]
+    "options": ["A. JFS", "B. ext3", "C. XFS", "D. ext2", "E. procfs"],
+    "correctAnswer": ["B", "D"]
   },
   {
     "index": 79,
@@ -1178,40 +917,21 @@
       "D. chmod 755+s /bin/foo",
       "E. chmod 2755 /bin/foo"
     ],
-    "correctAnswer": [
-      "A"
-    ]
+    "correctAnswer": ["A"]
   },
   {
     "index": 80,
     "questionType": "multiple-choice",
     "question": "Which of the following commands can be used to display the inode number of a given file? (Choose two.)",
-    "options": [
-      "A. inode",
-      "B. ln",
-      "C. ls",
-      "D. cp",
-      "E. stat"
-    ],
-    "correctAnswer": [
-      "C",
-      "E"
-    ]
+    "options": ["A. inode", "B. ln", "C. ls", "D. cp", "E. stat"],
+    "correctAnswer": ["C", "E"]
   },
   {
     "index": 81,
     "questionType": "single-choice",
     "question": "Which of the following settings for umask ensures that new files have the default permissions -rw-r-----?",
-    "options": [
-      "A. 0017",
-      "B. 0640",
-      "C. 0038",
-      "D. 0227",
-      "E. 0027"
-    ],
-    "correctAnswer": [
-      "E"
-    ]
+    "options": ["A. 0017", "B. 0640", "C. 0038", "D. 0227", "E. 0027"],
+    "correctAnswer": ["E"]
   },
   {
     "index": 82,
@@ -1224,9 +944,7 @@
       "D. By running xfsadmin repairon the file system",
       "E. By running xfs_repair on the file system"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 83,
@@ -1239,48 +957,28 @@
       "D. Inode number",
       "E. Permissions"
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 84,
     "questionType": "fill-in",
     "question": "Following the Filesystem Hierarchy Standard (FHS), where should binaries that have been compiled by the system administrator be placed in order to be made available to all users on the system? (Specify the full path to the directory.)",
     "options": [],
-    "correctAnswer": [
-      "/usr/local/bin"
-    ]
+    "correctAnswer": ["/usr/local/bin"]
   },
   {
     "index": 85,
     "questionType": "single-choice",
     "question": "Which of the following commands show how the shell handles a specific command?",
-    "options": [
-      "A. where",
-      "B. type",
-      "C. stat",
-      "D. case",
-      "E. fileinfo"
-    ],
-    "correctAnswer": [
-      "B"
-    ]
+    "options": ["A. where", "B. type", "C. stat", "D. case", "E. fileinfo"],
+    "correctAnswer": ["B"]
   },
   {
     "index": 86,
     "questionType": "single-choice",
     "question": "When in Normal mode in vi, which character can be used to begin a reverse search of the text?",
-    "options": [
-      "A. r",
-      "B. /",
-      "C. F",
-      "D. ?",
-      "E. s"
-    ],
-    "correctAnswer": [
-      "D"
-    ]
+    "options": ["A. r", "B. /", "C. F", "D. ?", "E. s"],
+    "correctAnswer": ["D"]
   },
   {
     "index": 87,
@@ -1293,9 +991,7 @@
       "D. man 1.command",
       "E. man -s 1 command"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 88,
@@ -1308,9 +1004,7 @@
       "D. ls >> data",
       "E. ls >>> data"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 89,
@@ -1323,9 +1017,7 @@
       "D. set",
       "E. envsetup"
     ],
-    "correctAnswer": [
-      "D"
-    ]
+    "correctAnswer": ["D"]
   },
   {
     "index": 90,
@@ -1338,10 +1030,7 @@
       "D. pgrep -U 0",
       "E. pgrep -c 0"
     ],
-    "correctAnswer": [
-      "B",
-      "D"
-    ]
+    "correctAnswer": ["B", "D"]
   },
   {
     "index": 91,
@@ -1354,10 +1043,7 @@
       "D. Esc :wq",
       "E. Esc ZZ"
     ],
-    "correctAnswer": [
-      "D",
-      "E"
-    ]
+    "correctAnswer": ["D", "E"]
   },
   {
     "index": 92,
@@ -1370,25 +1056,14 @@
       "D. It changes the output order showing the last matching line first.",
       "E. It outputs all lines and prefixes matching lines with a+."
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 93,
     "questionType": "multiple-choice",
     "question": "Which of the following tools can show the complete path of an executable file that the current shell would execute when starting a command without specifying its complete path? (Choose two.)",
-    "options": [
-      "A. find",
-      "B. pwd",
-      "C. which",
-      "D. locate",
-      "E. type"
-    ],
-    "correctAnswer": [
-      "C",
-      "E"
-    ]
+    "options": ["A. find", "B. pwd", "C. which", "D. locate", "E. type"],
+    "correctAnswer": ["C", "E"]
   },
   {
     "index": 94,
@@ -1401,9 +1076,7 @@
       "D. SIGKILL",
       "E. SIGINT"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 95,
@@ -1416,9 +1089,7 @@
       "D. ABCabc",
       "E. Axxaxx"
     ],
-    "correctAnswer": [
-      "A"
-    ]
+    "correctAnswer": ["A"]
   },
   {
     "index": 96,
@@ -1431,10 +1102,7 @@
       "D. pwd",
       "E. echo \"${pwd}\""
     ],
-    "correctAnswer": [
-      "A",
-      "D"
-    ]
+    "correctAnswer": ["A", "D"]
   },
   {
     "index": 97,
@@ -1447,24 +1115,14 @@
       "D.  cat &<EOT",
       "E.  cat <<EOT"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 98,
     "questionType": "single-choice",
     "question": "What is the default nice level when a process is started using the nice command?",
-    "options": [
-      "A. -10",
-      "B. 0",
-      "C. 10",
-      "D. 15",
-      "E. 20"
-    ],
-    "correctAnswer": [
-      "C"
-    ]
+    "options": ["A. -10", "B. 0", "C. 10", "D. 15", "E. 20"],
+    "correctAnswer": ["C"]
   },
   {
     "index": 99,
@@ -1477,24 +1135,14 @@
       "D. rmdir ~/\\dir",
       "E. rmdir '~/\\dir\u2019"
     ],
-    "correctAnswer": [
-      "A"
-    ]
+    "correctAnswer": ["A"]
   },
   {
     "index": 100,
     "questionType": "single-choice",
     "question": "Which of the following commands can perform searches on file contents using regular expressions?",
-    "options": [
-      "A. find",
-      "B. locate",
-      "C. grep",
-      "D. reggrep",
-      "E. pgrep"
-    ],
-    "correctAnswer": [
-      "C"
-    ]
+    "options": ["A. find", "B. locate", "C. grep", "D. reggrep", "E. pgrep"],
+    "correctAnswer": ["C"]
   },
   {
     "index": 101,
@@ -1507,24 +1155,14 @@
       "D. -s",
       "E. -n"
     ],
-    "correctAnswer": [
-      "A"
-    ]
+    "correctAnswer": ["A"]
   },
   {
     "index": 102,
     "questionType": "single-choice",
     "question": "Which of the following commands determines a file\u2019s format by using a definition database file which contains information about all common file types?",
-    "options": [
-      "A. type",
-      "B. file",
-      "C. magic",
-      "D. pmagic",
-      "E. hash"
-    ],
-    "correctAnswer": [
-      "B"
-    ]
+    "options": ["A. type", "B. file", "C. magic", "D. pmagic", "E. hash"],
+    "correctAnswer": ["B"]
   },
   {
     "index": 103,
@@ -1537,9 +1175,7 @@
       "D. sort -t: -k1,7 /etc/passwd",
       "E. cut -d: -f1,7 /etc/passwd"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 104,
@@ -1552,9 +1188,7 @@
       "D. Only a.txt and b.txt",
       "E. Only texts.tar"
     ],
-    "correctAnswer": [
-      "E"
-    ]
+    "correctAnswer": ["E"]
   },
   {
     "index": 105,
@@ -1567,9 +1201,7 @@
       "D. By issuing a command such as :set repetition=4 with repeats every subsequent command 4 times.",
       "E. By specifying the number after a command such as l4 or yj2 followed by escape."
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 106,
@@ -1582,24 +1214,14 @@
       "D. The command is run as a direct child of the init process.",
       "E. The command\u2019s input is read from /dev/null."
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 107,
     "questionType": "single-choice",
     "question": "Which of the following commands reads a file and creates separate chunks of a given size from the file\u2019s contents?",
-    "options": [
-      "A. ar",
-      "B. cat",
-      "C. break",
-      "D. split",
-      "E. parted"
-    ],
-    "correctAnswer": [
-      "D"
-    ]
+    "options": ["A. ar", "B. cat", "C. break", "D. split", "E. parted"],
+    "correctAnswer": ["D"]
   },
   {
     "index": 108,
@@ -1612,27 +1234,21 @@
       "D. It asks a question, graphically, and returns the answer to the shell.",
       "E. It allows specifying long options (like --help) for commands that normally only accept short options (like -h)"
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 109,
     "questionType": "fill-in",
     "question": "Which command displays a list of all background tasks running in the current shell? (Specify ONLY the command without any path or parameters.)",
     "options": [],
-    "correctAnswer": [
-      "jobs"
-    ]
+    "correctAnswer": ["jobs"]
   },
   {
     "index": 110,
     "questionType": "fill-in",
     "question": "Which command is used to change the priority of an already running process? (Specify ONLY the command without any path or parameters.)",
     "options": [],
-    "correctAnswer": [
-      "renice"
-    ]
+    "correctAnswer": ["renice"]
   },
   {
     "index": 111,
@@ -1645,9 +1261,7 @@
       "D. \u2026standard error to standard output.",
       "E. \u2026standard output to standard input."
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 112,
@@ -1660,9 +1274,7 @@
       "D. Using chroot to switch to the file system on the hard disk and use dmesg to view the logs.",
       "E. Rebooting again from the hard drive since the system successfully booted from the rescue CD."
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 113,
@@ -1675,9 +1287,7 @@
       "D. On the partition labeled boot.",
       "E. On the partition number 127."
     ],
-    "correctAnswer": [
-      "C"
-    ]
+    "correctAnswer": ["C"]
   },
   {
     "index": 114,
@@ -1690,9 +1300,7 @@
       "D. systemctl set-default multi-user.target",
       "E. systemctl boot -p multi-user.target"
     ],
-    "correctAnswer": [
-      "D"
-    ]
+    "correctAnswer": ["D"]
   },
   {
     "index": 115,
@@ -1705,10 +1313,7 @@
       "D. The kernel uses the initramfs temporarily before accessing the real root file system.",
       "E. An initramfs does not depend on a specific kernel version and is not changed after the initial installation."
     ],
-    "correctAnswer": [
-      "A",
-      "D"
-    ]
+    "correctAnswer": ["A", "D"]
   },
   {
     "index": 116,
@@ -1721,9 +1326,7 @@
       "D. insmod",
       "E. loadmod"
     ],
-    "correctAnswer": [
-      "B"
-    ]
+    "correctAnswer": ["B"]
   },
   {
     "index": 117,
@@ -1736,20 +1339,14 @@
       "D. Ethernet MAC address",
       "E. Device vendor identification"
     ],
-    "correctAnswer": [
-      "B",
-      "C",
-      "E"
-    ]
+    "correctAnswer": ["B", "C", "E"]
   },
   {
     "index": 118,
     "questionType": "fill-in",
     "question": "Which System V init configuration file is commonly used to set the default run level? (Specify the full name of the file, including path.)",
     "options": [],
-    "correctAnswer": [
-      "/etc/inittab"
-    ]
+    "correctAnswer": ["/etc/inittab"]
   },
   {
     "index": 119,
@@ -1762,9 +1359,6 @@
       "D. Both S02apache2 and K01apache2 are run during a system shutdown.",
       "E. K01apache2 is run when runlevel 1 is entered."
     ],
-    "correctAnswer": [
-      "A",
-      "E"
-    ]
+    "correctAnswer": ["A", "E"]
   }
 ]
