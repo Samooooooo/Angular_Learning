@@ -15,6 +15,7 @@ export class QuestionDetailsComponent {
   lastQError = 'No more Questions';
   lastQswitch = false;
 
+
   constructor(
     private service: QuestionService,
     private route: ActivatedRoute,
