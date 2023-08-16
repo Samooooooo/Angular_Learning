@@ -15,7 +15,6 @@ export class QuestionDetailsComponent {
   lastQError = 'No more Questions';
   lastQswitch = false;
 
-
   constructor(
     private service: QuestionService,
     private route: ActivatedRoute,
@@ -29,18 +28,21 @@ export class QuestionDetailsComponent {
   showAnswer(question: Question) {
     question.showAnswer = true;
   }
+
   showNextQuestion(question: Question) {
     const nextIndex = (parseInt(question.index) + 1).toString();
+    this.lastQswitch = false;
     this.questions$.subscribe((questions) => {
-      this.lastQswitch = false;
-      if (parseInt(nextIndex) == questions.length) {
+      if (parseInt(nextIndex) === questions.length) {
         this.lastQswitch = true;
+        this.router.navigate(['learn', question.index]);
       } else {
         this.question$ = this.service.getSingle(nextIndex);
         this.router.navigate(['learn', nextIndex]);
       }
     });
   }
+
   showPreviosQuestion(question: Question) {
     const PreviosIndex = (parseInt(question.index) - 1).toString();
     this.lastQswitch = false;

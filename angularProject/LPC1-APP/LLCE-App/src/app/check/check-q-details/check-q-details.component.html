@@ -1,60 +1,14 @@
-<div *ngIf="question$ | async as q">
-  <div
-    class="listItem"
-    style="
-      margin-top: 1em;
-      border: 5px solid rgba(128, 128, 128, 0.573);
-      border-radius: 5px;
-      padding: 10px;
-      padding-bottom: 2em;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: flex-start;
-    "
-  >
-    <div style="flex: 1">
-      <h3>{{ q.question }}</h3>
-      <ul>
-        <li *ngFor="let o of q.options">
-          <ng-container *ngIf="q.questionType === 'single-choice'">
-            <label>
-              <input type="radio" name="answer" (click)="checkAnswer(q, o)" />
-              {{ o }}
-            </label>
-          </ng-container>
-          <ng-container *ngIf="q.questionType === 'multiple-choice'">
-            <label>
-              <input
-                type="checkbox"
-                name="answer"
-                (change)="checkAnswer(q, o)"
-              />
-              {{ o }}
-            </label>
-          </ng-container>
-        </li>
-        <ng-container *ngIf="q.questionType === 'fill-in'">
-          <li>
-            <input type="text" #inputAnswer />
-            <button (click)="checkAnswer(q, inputAnswer.value)">Check</button>
-          </li>
-        </ng-container>
-      </ul>
-      <div style="height: 3em">
-        <button (click)="skipQuestion()">Skip</button>
-        <button routerLink="" style="margin-left: 1em" (click)="nextQuestion(q)">
-          Next Question
-        </button>
-        <button style="margin-left: 1em" (click)="previousQuestion()">
-          Previous Question
-        </button>
-        <p *ngIf="q.showAnswer">
-          <strong>Answer: </strong>{{ q.correctAnswer }}
-        </p>
-      </div>
-    </div>
-  </div>
-  <br />
-  <br />
-</div>
-<button routerLink="..">Home</button>
+<!-- <div *ngIf="question$ | async as q"> -->
+<div
+  class="listItem"
+  style="
+    margin-top: 1em;
+    border: 5px solid rgba(128, 128, 128, 0.573);
+    border-radius: 5px;
+    padding: 10px;
+    padding-bottom: 2em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+  "
+></div>
