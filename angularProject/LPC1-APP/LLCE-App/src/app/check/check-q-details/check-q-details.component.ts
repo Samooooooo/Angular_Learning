@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -14,41 +15,46 @@ export class CheckQDetailsComponent {
   questions$: Observable<Question[]>;
   lastQError = 'No more Questions';
   lastQswitch = false;
-  selectedAnswer: string| string[] = [];
-/////// check the answer in the console.log bro
+  selectedAnswer: string | string[] = [];
   constructor(
     private service: QuestionService,
     private route: ActivatedRoute,
     private router: Router,
   ) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const index = this.route.snapshot.paramMap.get('index')!;
     this.question$ = this.service.getSingle(index);
-    this.router.navigate(['check', '0'])
+    this.router.navigate(['check', '0']);
     this.questions$ = this.service.getQuestions();
   }
 
   checkAnswerAndNavigate(question: Question, answer: string | string[]) {
+    console.log(answer);
     if (Array.isArray(answer)) {
       const correctAnswers = question.correctAnswer;
-      const isCorrect = correctAnswers.every(correct => answer.includes(correct));
+      const isCorrect = correctAnswers.every((correct) =>
+        answer.includes(correct),
+      );
       if (isCorrect) {
+        this.showNextQuestion(question);
+        console.log(answer);
+        console.log('right');
+      } else {
+        this.showPreviosQuestion(question);
+        console.log(answer);
+        console.log('wrong');
+      }
+    } else {
+      if (answer.includes(question.correctAnswer[0])) {
         this.showNextQuestion(question);
       } else {
         this.showPreviosQuestion(question);
       }
-    } else {
-      if (answer !== '') {
-        if (answer.includes(question.correctAnswer[0])) {
-          this.showNextQuestion(question);
-        } else {
-          this.showPreviosQuestion(question);
-        }
-      } else {
-        this.showPreviosQuestion(question);
-      }
     }
+    this.question$.subscribe(() => {
+      this.selectedAnswer = '';
+    });
   }
-
 
   showNextQuestion(question: Question) {
     const nextIndex = (parseInt(question.index) + 1).toString();
@@ -75,5 +81,4 @@ export class CheckQDetailsComponent {
       this.lastQswitch = true;
     }
   }
-
 }

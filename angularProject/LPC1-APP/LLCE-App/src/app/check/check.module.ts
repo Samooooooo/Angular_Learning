@@ -7,6 +7,6 @@ import { CheckScoreComponent } from './check-score/check-score.component';
 
 @NgModule({
   declarations: [CheckQDetailsComponent, CheckScoreComponent],
-  imports: [CommonModule, CheckRoutingModule,FormsModule],
+  imports: [CommonModule, CheckRoutingModule, FormsModule],
 })
 export class CheckModule {}
