@@ -9,9 +9,10 @@ import { HeaderComponent } from './header/header.component';
 import { LearnModule } from './learn/learn.module';
 import { CheckModule } from './check/check.module';
 import { ExamModule } from './exam/exam.module';
+import { ScoreComponent } from './shared/score/score.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, ScoreComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

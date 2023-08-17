@@ -5,11 +5,11 @@ import { Question } from 'src/app/shared/question';
 import { QuestionService } from 'src/app/shared/question.service';
 
 @Component({
-  selector: 'lpc-check-q-details',
-  templateUrl: './check-q-details.component.html',
-  styleUrls: ['./check-q-details.component.css'],
+  selector: 'lpc-exam-q-details',
+  templateUrl: './exam-q-details.component.html',
+  styleUrls: ['./exam-q-details.component.css'],
 })
-export class CheckQDetailsComponent {
+export class ExamQDetailsComponent {
   question$: Observable<Question>;
   questions$: Observable<Question[]>;
   lastQError = 'No more Questions';
@@ -23,7 +23,7 @@ export class CheckQDetailsComponent {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const index = this.route.snapshot.paramMap.get('index')!;
     this.question$ = this.service.getSingle(index);
-    this.router.navigate(['check', '0']);
+    this.router.navigate(['exam', '0']);
     this.questions$ = this.service.getQuestions();
   }
 
@@ -58,7 +58,7 @@ export class CheckQDetailsComponent {
       if (parseInt(nextIndex) < questions.length) {
         this.lastQswitch = false;
         this.question$ = this.service.getSingle(nextIndex);
-        this.router.navigate(['check', nextIndex]);
+        this.router.navigate(['exam', nextIndex]);
       } else {
         this.lastQswitch = true;
       }
@@ -71,7 +71,7 @@ export class CheckQDetailsComponent {
     if (parseInt(prevIndex) >= 0) {
       this.lastQswitch = false;
       this.question$ = this.service.getSingle(prevIndex);
-      this.router.navigate(['check', prevIndex]);
+      this.router.navigate(['exam', prevIndex]);
     } else {
       this.lastQswitch = true;
     }
