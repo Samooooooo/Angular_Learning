@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Question } from 'src/app/shared/question';
 import { QuestionService } from 'src/app/shared/question.service';
+import { Score } from 'src/app/shared/score';
+import { ScoreService } from 'src/app/shared/score/score.service';
 
 @Component({
   selector: 'lpc-exam-q-details',
@@ -14,9 +16,14 @@ export class ExamQDetailsComponent {
   questions$: Observable<Question[]>;
   lastQError = 'No more Questions';
   lastQswitch = false;
+  noOptionError = 'No Answer!!!';
+  noOptionSwitch = false;
   selectedAnswer: string[] = [];
+  score: Score | undefined;
+
   constructor(
     private service: QuestionService,
+    private ScoreService: ScoreService,
     private route: ActivatedRoute,
     private router: Router,
   ) {
@@ -28,27 +35,37 @@ export class ExamQDetailsComponent {
   }
 
   checkAnswerAndNavigate(question: Question, answers: string | string[]) {
-    if (Array.isArray(answers)) {
-      const correctAnswersFirstChars = question.correctAnswer.map((correct) =>
-        correct.charAt(0),
-      );
-      const isCorrect = answers.every((answer) =>
-        correctAnswersFirstChars.includes(answer.charAt(0)),
-      );
-      if (isCorrect) {
-        this.showNextQuestion(question);
-      } else {
-        this.showPreviosQuestion(question);
-      }
+    if (answers === '' || (Array.isArray(answers) && answers.length === 0)) {
+      this.noOptionSwitch = true;
     } else {
-      //For Fill IN
-      if (answers.includes(question.correctAnswer[0])) {
-        this.showNextQuestion(question);
+      if (Array.isArray(answers)) {
+        const correctAnswersFirstChars = question.correctAnswer.map((correct) =>
+          correct.charAt(0),
+        );
+        const isCorrect = answers.every((answer) =>
+          correctAnswersFirstChars.includes(answer.charAt(0)),
+        );
+        if (isCorrect && answers.length === question.correctAnswer.length) {
+          this.showNextQuestion(question);
+        } else {
+          this.showPreviosQuestion(question);
+        }
       } else {
-        this.showPreviosQuestion(question);
+        //For Fill IN
+        if (answers.includes(question.correctAnswer[0])) {
+          this.showNextQuestion(question);
+        } else {
+          this.showPreviosQuestion(question);
+        }
       }
     }
     this.selectedAnswer = [];
+    this.ScoreService.calculateUpdatedScores(question, answers);
+  }
+
+  skipQuestion(question: Question, answers: string | string[]) {
+    question.skipped = true;
+    this.checkAnswerAndNavigate(question, answers);
   }
 
   showNextQuestion(question: Question) {
@@ -57,10 +74,11 @@ export class ExamQDetailsComponent {
     this.questions$.subscribe((questions) => {
       if (parseInt(nextIndex) < questions.length) {
         this.lastQswitch = false;
+        this.noOptionSwitch = false;
         this.question$ = this.service.getSingle(nextIndex);
         this.router.navigate(['exam', nextIndex]);
       } else {
-        this.lastQswitch = true;
+        this.router.navigate(['scores']);
       }
     });
   }

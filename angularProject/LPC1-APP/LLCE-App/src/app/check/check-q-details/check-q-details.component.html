@@ -65,8 +65,17 @@
         >
           Previous Question
         </button>
-        <div *ngIf="lastQswitch" style="color: rgb(8, 8, 8)">
+        <button
+          style="margin-left: 1em; margin-top: 10px"
+          (click)="skipQuestion(q, selectedAnswer)"
+        >
+          Skip
+        </button>
+        <div *ngIf="lastQswitch" style="color: rgb(255, 0, 0)">
           <h6>{{ lastQError }}</h6>
+        </div>
+        <div *ngIf="noOptionSwitch" style="color: rgb(253, 1, 1)">
+          <h6>{{ noOptionError }}</h6>
         </div>
         <p *ngIf="q.showAnswer">
           <strong>Answer: </strong>{{ q.correctAnswer }}
@@ -77,4 +86,5 @@
     <br />
   </div>
   <button routerLink="/">Back</button>
+  <button style="margin-left: 1em" routerLink="/scores">Score</button>
 </div>

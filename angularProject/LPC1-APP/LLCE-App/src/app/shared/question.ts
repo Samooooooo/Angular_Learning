@@ -5,4 +5,5 @@ export interface Question {
   options: string[];
   correctAnswer: string[];
   showAnswer: boolean;
+  skipped: boolean;
 }

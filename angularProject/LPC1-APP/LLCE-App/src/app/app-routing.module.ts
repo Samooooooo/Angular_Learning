@@ -28,7 +28,7 @@ const routes: Routes = [
       import('./learn/learn.module').then((m) => m.LearnModule),
   },
   {
-    path: 'score',
+    path: 'scores',
     component: ScoreComponent,
   },
 ];
