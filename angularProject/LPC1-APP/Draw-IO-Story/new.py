@@ -32,19 +32,17 @@ for index, question_text in enumerate(questions):
         "questionType": "",
         "question": "",
         "options": [],
-        "correctAnswer": ""
+        "correctAnswer": []
     }
 
     options_started = False
+    correct_answer_option = None
     for line in lines:
         if line.startswith("Answer:"):
-            answer_text = line.replace("Answer:", "").strip()
-            if len(answer_text) > 1:
-                question_data["questionType"] = QuestionType.MULTIPLE_CHOICE.value
-                question_data["correctAnswer"] = answer_text
-            else:
-                question_data["questionType"] = QuestionType.SINGLE_CHOICE.value
-                question_data["correctAnswer"] = answer_text
+            answer_letter = line.split()[-1]
+            correct_answer_option = next((opt for opt in question_data["options"] if opt.startswith(answer_letter + ".")), None)
+            if correct_answer_option:
+                question_data["correctAnswer"] = [correct_answer_option.split(".", 1)[1].strip()]  # Extract the answer text
             break
         elif line.startswith(('A.', 'B.', 'C.', 'D.', 'E.')):
             options_started = True
@@ -56,7 +54,6 @@ for index, question_text in enumerate(questions):
 
     if len(question_data["options"]) == 0:
         question_data["questionType"] = QuestionType.FILL_IN.value
-        question_data["correctAnswer"] = question_data["correctAnswer"].strip()
 
     parsed_questions.append(question_data)
 

@@ -6,4 +6,5 @@ export interface Question {
   correctAnswer: string[];
   showAnswer: boolean;
   skipped: boolean;
+  selectedAnswer:  string | string[];
 }

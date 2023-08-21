@@ -14,4 +14,9 @@ export class ScoreComponent {
   constructor(private scoreService: ScoreService) {
     this.scores = this.scoreService.getScores();
   }
+
+  isArray(answer: string | string[]): boolean {
+    return Array.isArray(answer);
+  }
+
 }

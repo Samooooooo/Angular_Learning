@@ -59,8 +59,9 @@ export class CheckQDetailsComponent {
         }
       }
     }
-    this.selectedAnswer = [];
+    question.selectedAnswer = answers;
     this.ScoreService.calculateUpdatedScores(question, answers);
+    this.selectedAnswer = [];
   }
 
   skipQuestion(question: Question, answers: string | string[]) {

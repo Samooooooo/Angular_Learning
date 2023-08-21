@@ -27,6 +27,7 @@ export class ScoreService {
   }
 
   calculateUpdatedScores(question: Question, answers: string | string[]) {
+
     const updatedScores = { ...this.scores };
     if (Array.isArray(answers)) {
       const correctAnswersFirstChars = question.correctAnswer.map((correct) =>
