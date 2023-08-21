@@ -1,12 +1,7 @@
 <h1>
   Your Score is
-  {{ (scores.correct * 100) / questionsInTotal | number: "1.2-2" }} From total
+  {{ (scores.answersCounter * 100) / questionsInTotal | number: "1.2-2" }} From total
   questions
-</h1>
-<h1>
-  Your Score is
-  {{ (scores.correct * 100) / scores.questionCounter | number: "1.2-2" }}
-  From Answered questions
 </h1>
 
 <div>
