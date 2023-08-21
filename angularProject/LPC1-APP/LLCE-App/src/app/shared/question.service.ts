@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Question } from './question';
@@ -10,9 +10,11 @@ export class QuestionService {
   private jsonFilePath = 'assets/output.json';
 
   questions: Question[] = [];
+  questionsLength = 0;
 
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient) {
+    this.getLength();
+  }
   getQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>(this.jsonFilePath);
   }
@@ -28,5 +30,14 @@ export class QuestionService {
         }
       }),
     );
+  }
+  getLength() {
+    return this.http
+      .get<Question[]>(this.jsonFilePath)
+      .subscribe((questions) => {
+        this.questionsLength = questions.length;
+        console.log(this.questionsLength);
+        console.log(questions.length);
+    });
   }
 }

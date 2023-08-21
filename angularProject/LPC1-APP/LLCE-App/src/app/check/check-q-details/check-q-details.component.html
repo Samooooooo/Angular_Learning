@@ -81,6 +81,13 @@
           <strong>Answer: </strong>{{ q.correctAnswer }}
         </p>
       </div>
+      <br />
+      <div *ngIf="countDown > 0">
+        <span style="color: red"
+          >Wrong Answer you will be redirected to the Previous Question in
+          <strong> {{ countDown }} </strong> seconds</span
+        >
+      </div>
     </div>
     <br />
     <br />

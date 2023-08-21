@@ -35,37 +35,10 @@ export class ExamQDetailsComponent {
   }
 
   checkAnswerAndNavigate(question: Question, answers: string | string[]) {
-    if (answers === '' || (Array.isArray(answers) && answers.length === 0)) {
-      this.noOptionSwitch = true;
-    } else {
-      if (Array.isArray(answers)) {
-        const correctAnswersFirstChars = question.correctAnswer.map((correct) =>
-          correct.charAt(0),
-        );
-        const isCorrect = answers.every((answer) =>
-          correctAnswersFirstChars.includes(answer.charAt(0)),
-        );
-        if (isCorrect && answers.length === question.correctAnswer.length) {
-          this.showNextQuestion(question);
-        } else {
-          this.showPreviosQuestion(question);
-        }
-      } else {
-        //For Fill IN
-        if (answers.includes(question.correctAnswer[0])) {
-          this.showNextQuestion(question);
-        } else {
-          this.showPreviosQuestion(question);
-        }
-      }
-    }
-    this.selectedAnswer = [];
+    this.showNextQuestion(question);
+    question.selectedAnswer = answers;
     this.ScoreService.calculateUpdatedScores(question, answers);
-  }
-
-  skipQuestion(question: Question, answers: string | string[]) {
-    question.skipped = true;
-    this.checkAnswerAndNavigate(question, answers);
+    this.selectedAnswer = [];
   }
 
   showNextQuestion(question: Question) {

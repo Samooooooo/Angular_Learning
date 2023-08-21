@@ -13,8 +13,8 @@ export class ScoreService {
     remaining: 120,
     wrongQuestions: [],
     skipedQuestions: [],
+    questionCounter: 0,
   };
-
 
   getScores() {
     return this.scores;
@@ -27,7 +27,6 @@ export class ScoreService {
   }
 
   calculateUpdatedScores(question: Question, answers: string | string[]) {
-
     const updatedScores = { ...this.scores };
     if (Array.isArray(answers)) {
       const correctAnswersFirstChars = question.correctAnswer.map((correct) =>
@@ -41,14 +40,23 @@ export class ScoreService {
         updatedScores.remaining--;
       } else {
         if (question.skipped) {
-          if (!updatedScores.skipedQuestions.includes(question)) {
+          if (
+            !this.scores.skipedQuestions.some((q) => q.index === question.index)
+          ) {
             updatedScores.skipped++;
             updatedScores.skipedQuestions.push(question);
           }
         } else {
           if (Array.isArray(answers) && answers.length !== 0) {
-            updatedScores.wrong++;
-            updatedScores.wrongQuestions.push(question);
+            if (
+              !this.scores.wrongQuestions.includes(question) &&
+              !this.scores.wrongQuestions.some(
+                (q) => q.selectedAnswer[0] === question.selectedAnswer[0],
+              )
+            ) {
+              updatedScores.wrong++;
+              updatedScores.wrongQuestions.push(question);
+            }
           }
         }
       }
@@ -69,6 +77,7 @@ export class ScoreService {
         }
       }
     }
+    updatedScores.questionCounter++;
     this.updateScores(updatedScores);
   }
 }

@@ -20,6 +20,7 @@ export class CheckQDetailsComponent {
   noOptionSwitch = false;
   selectedAnswer: string[] = [];
   score: Score | undefined;
+  countDown = 0;
 
   constructor(
     private service: QuestionService,
@@ -48,7 +49,11 @@ export class CheckQDetailsComponent {
         if (isCorrect && answers.length === question.correctAnswer.length) {
           this.showNextQuestion(question);
         } else {
-          this.showPreviosQuestion(question);
+          this.countDown = 3;
+          this.countDownM();
+          setTimeout(() => {
+            this.showPreviosQuestion(question);
+          }, 3000);
         }
       } else {
         //For Fill IN
@@ -66,7 +71,8 @@ export class CheckQDetailsComponent {
 
   skipQuestion(question: Question, answers: string | string[]) {
     question.skipped = true;
-    this.checkAnswerAndNavigate(question, answers);
+    this.showNextQuestion(question);
+    this.ScoreService.calculateUpdatedScores(question, answers);
   }
 
   showNextQuestion(question: Question) {
@@ -102,6 +108,14 @@ export class CheckQDetailsComponent {
       );
     } else {
       this.selectedAnswer.push(option);
+    }
+  }
+  countDownM() {
+    if (this.countDown > 0) {
+      setTimeout(() => {
+        this.countDown--;
+        this.countDownM();
+      }, 1000);
     }
   }
 }

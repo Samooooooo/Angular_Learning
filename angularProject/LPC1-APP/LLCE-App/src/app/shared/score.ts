@@ -7,4 +7,5 @@ export interface Score {
   remaining: number;
   wrongQuestions: Question[];
   skipedQuestions: Question[];
+  questionCounter: number;
 }
