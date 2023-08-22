@@ -20,7 +20,6 @@ export class ScoreComponent {
     this.questionsInTotal = this.service.questionsLength;
     console.log(this.questionsInTotal);
     console.log(this.service.questionsLength);
-
   }
 
   isArray(answer: string | string[]): boolean {

@@ -8,6 +8,7 @@ const routes: Routes = [
   {
     path: ':index',
     component: QuestionDetailsComponent,
+    data:{comnam:'hohohoho'}
   },
 ];
 

@@ -21,6 +21,7 @@ const routes: Routes = [
   {
     path: 'exam',
     loadChildren: () => import('./exam/exam.module').then((m) => m.ExamModule),
+    data: { componentName: 'exam' },
   },
   {
     path: 'learn',

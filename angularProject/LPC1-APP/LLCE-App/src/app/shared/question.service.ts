@@ -38,6 +38,6 @@ export class QuestionService {
         this.questionsLength = questions.length;
         console.log(this.questionsLength);
         console.log(questions.length);
-    });
+      });
   }
 }

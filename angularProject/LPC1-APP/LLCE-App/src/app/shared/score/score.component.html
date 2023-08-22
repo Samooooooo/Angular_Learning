@@ -1,13 +1,19 @@
 <h1>
   Your Score is
-  {{ (scores.answersCounter * 100) / questionsInTotal | number: "1.2-2" }} From total
-  questions
+  {{ (scores.answersCounter * 100) / questionsInTotal | number: "1.2-2" }}
 </h1>
-
+<div>
+  <h2>Correct question:</h2>
+  <p>
+    Number of <strong style="color: green">Correct</strong> Answers:
+    {{ scores.answersCounter }}
+  </p>
+</div>
 <div>
   <h2>Wrong Questions:</h2>
-  <p>Number of Wrong Answers: {{ scores.wrong }}</p>
-  <div>
+  <p>Number of wrong Answers: {{ scores.wrong }}</p>
+  <div *ngIf="scores.wrongQuestions">
+    <p>Your <strong style="color: red">wrong</strong> answers:</p>
     <ul>
       <li
         style="
@@ -92,4 +98,11 @@
       </li>
     </ul>
   </div>
+</div>
+<div>
+  <h2>Rest questions:</h2>
+  <p>
+    Number of the <strong style="color: rgb(214, 129, 0)">Rest</strong> Answers:
+    {{ 120 - scores.answersCounter + scores.skipped + scores.wrong }}
+  </p>
 </div>

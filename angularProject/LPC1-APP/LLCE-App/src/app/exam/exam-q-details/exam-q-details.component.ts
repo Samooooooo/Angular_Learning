@@ -20,6 +20,7 @@ export class ExamQDetailsComponent {
   noOptionSwitch = false;
   selectedAnswer: string[] = [];
   score: Score | undefined;
+  countDown = 0;
 
   constructor(
     private service: QuestionService,
@@ -35,12 +36,20 @@ export class ExamQDetailsComponent {
   }
 
   checkAnswerAndNavigate(question: Question, answers: string | string[]) {
-    this.showNextQuestion(question);
+    if (answers === '' || (Array.isArray(answers) && answers.length === 0)) {
+      this.noOptionSwitch = true;
+    } else {
+      if (Array.isArray(answers)) {
+        this.showNextQuestion(question);
+      } else {
+        //For Fill IN
+        this.showNextQuestion(question);
+      }
+    }
     question.selectedAnswer = answers;
     this.ScoreService.calculateUpdatedScores(question, answers);
     this.selectedAnswer = [];
   }
-
   showNextQuestion(question: Question) {
     const nextIndex = (parseInt(question.index) + 1).toString();
 

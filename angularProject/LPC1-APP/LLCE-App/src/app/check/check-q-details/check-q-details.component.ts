@@ -36,6 +36,7 @@ export class CheckQDetailsComponent {
   }
 
   checkAnswerAndNavigate(question: Question, answers: string | string[]) {
+    question.skipped = false;
     if (answers === '' || (Array.isArray(answers) && answers.length === 0)) {
       this.noOptionSwitch = true;
     } else {
