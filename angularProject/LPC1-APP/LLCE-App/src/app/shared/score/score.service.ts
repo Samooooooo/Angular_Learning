@@ -1,8 +1,8 @@
-import { ComponentRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Question } from '../question';
 import { Score } from '../score';
-import { ActivatedRoute } from '@angular/router';
-import { ExamQDetailsComponent } from 'src/app/exam/exam-q-details/exam-q-details.component';
+import { Router } from '@angular/router';
+import { QuestionService } from '../question.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,12 +21,25 @@ export class ScoreService {
   getScores() {
     return this.scores;
   }
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private service: QuestionService,
+  ) {}
 
   updateScores(updatedScores: Score) {
     this.scores = updatedScores;
-    console.table(updatedScores);
     console.table(this.scores);
+  }
+
+  isExamRoute(): boolean {
+    const segments = this.router.url
+      .split('/')
+      .filter((segment) => segment !== ''); // Split URL segments
+
+    if (segments.length >= 1 && segments[0] === 'exam') {
+      return true; // Check if the first segment is 'exam'
+    }
+    return false;
   }
 
   calculateUpdatedScores(question: Question, answers: string | string[]) {
@@ -38,64 +51,84 @@ export class ScoreService {
       const isCorrect = answers.every((answer) =>
         correctAnswersFirstChars.includes(answer.charAt(0)),
       );
-      if (
-        isCorrect &&
-        answers.length === question.correctAnswer.length &&
-        !question.skipped
-      ) {
-        if (
-          !this.scores.rightQuestions.some((q) => q.index === question.index)
-        ) {
-          updatedScores.rightQuestions.push(question);
-        }
-        // eslint-disable-next-line no-constant-condition
-        if (true) {
-          updatedScores.wrongQuestions.filter(
-            (q) => q.index === question.index,
+      if (isCorrect && answers.length === question.correctAnswer.length) {
+        if (this.isExamRoute()) {
+          updatedScores.wrongQuestions = updatedScores.wrongQuestions.filter(
+            (q) => q.index !== question.index,
           );
         }
         updatedScores.skipedQuestions = updatedScores.skipedQuestions.filter(
           (q) => q.index !== question.index,
         );
+        if (
+          !this.scores.rightQuestions.some((q) => q.index === question.index)
+        ) {
+          updatedScores.rightQuestions.push(question);
+        }
+      } else if (question.skipped) {
+        if (
+          !this.scores.rightQuestions.some((q) => q.index === question.index) &&
+          !this.scores.skipedQuestions.some((q) => q.index === question.index)
+        ) {
+          updatedScores.skipedQuestions.push(question);
+        }
       } else {
-        if (question.skipped) {
+        if (
+          Array.isArray(answers) &&
+          answers.length !== 0 &&
+          !question.skipped
+        ) {
           if (
-            !this.scores.skipedQuestions.some((q) => q.index === question.index)
-          ) {
-            console.log('assasd');
-            console.log(question.skipped);
-            updatedScores.skipedQuestions.push(question);
-          }
-        } else if (Array.isArray(answers) && answers.length !== 0) {
-          if (
-            !this.scores.wrongQuestions.includes(question) &&
             !this.scores.wrongQuestions.some(
-              (q) => q.selectedAnswer[0] === question.selectedAnswer[0],
+              (wq) => wq.index === question.index,
             )
           ) {
+            updatedScores.wrongQuestions.push(question);
+          } else if (
+            this.scores.wrongQuestions.findIndex(
+              (wq) => wq.selectedAnswer === question.selectedAnswer,
+            ) == -1
+          ) {
+            console.log('asddasdasfas');
             updatedScores.wrongQuestions.push(question);
           }
         }
       }
     } else {
       if (answers.includes(question.correctAnswer[0])) {
+        updatedScores.rightQuestions.push(question);
         updatedScores.skipedQuestions = updatedScores.skipedQuestions.filter(
           (q) => q.index !== question.index,
         );
-      } else {
-        if (
-          question.skipped &&
-          !updatedScores.skipedQuestions.includes(question)
-        ) {
-          updatedScores.skipedQuestions.push(question);
-        } else {
-          updatedScores.wrongQuestions.push(question);
+        if (this.isExamRoute()) {
+          updatedScores.wrongQuestions = updatedScores.wrongQuestions.filter(
+            (q) => q.index !== question.index,
+          );
         }
+      } else if (answers !== '') {
+        if (
+          this.scores.wrongQuestions.some((wq) => wq.index === question.index)
+        )
+          if (
+            !this.scores.wrongQuestions.some((wq) =>
+              wq.selectedAnswer.includes(answers),
+            )
+          ) {
+            updatedScores.wrongQuestions.push(question);
+            console.log('fillin');
+          }
       }
     }
     updatedScores.answersCounter = updatedScores.rightQuestions.length;
     updatedScores.skipped = updatedScores.skipedQuestions.length;
     updatedScores.wrong = updatedScores.wrongQuestions.length;
     this.updateScores(updatedScores);
+    if (
+      this.service.questionsLength * 0.2 ===
+      this.scores.wrongQuestions.length
+    ) {
+      this.router.navigate(['score']);
+      console.log('finish');
+    }
   }
 }
