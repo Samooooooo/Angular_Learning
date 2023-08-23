@@ -1,0 +1,32 @@
+.section {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #666;
+}
+
+a {
+  text-decoration: none;
+}
+
+.mode-section {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.mode-section:hover {
+  background-color: #e0e0e0;
+}

@@ -24,7 +24,6 @@ export class QuestionDetailsComponent {
     const index = this.route.snapshot.paramMap.get('index')!;
     this.question$ = this.service.getSingle(index);
     this.questions$ = this.service.getQuestions();
-    console.log(this.route.snapshot.data);
   }
   showAnswer(question: Question) {
     question.showAnswer = true;
