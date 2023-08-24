@@ -1,7 +1,33 @@
+<div style="border: solid gray; border-radius: 6px; margin: 1em; padding-left: 1em;">
+  <h2 style="color: green">Correct: {{ scores.answersCounter }}</h2>
+  <h2 style="color: red">Wrong: {{ scores.wrong }}</h2>
+  <h2 style="color: rgb(32, 5, 107)">Skipped: {{ scores.skipped }}</h2>
+  <h2 style="color: rgb(214, 129, 0)">
+    Rest:
+    {{
+      questionsInTotal - scores.answersCounter - scores.wrong - scores.skipped
+    }}
+  </h2>
+</div>
 <h1>
   Your Score is
-  {{ (scores.answersCounter * 100) / questionsInTotal | number: "1.2-2" }}
+  <strong style="color: rgba(26, 70, 26, 0.651)">
+    {{ (scores.answersCounter * 100) / questionsInTotal | number: "1.2-2" }}
+  </strong>
+  from the total of {{ questionsInTotal }} questions
 </h1>
+<br />
+<h1>
+  Your Score is
+  <strong style="color: rgba(26, 70, 26, 0.651)">
+    {{
+      (scores.answersCounter * 100) / (scores.answersCounter + scores.wrong)
+        | number: "1.2-2"
+    }}
+  </strong>
+  from the questions you answered
+</h1>
+<br />
 <div>
   <h2>Correct question:</h2>
   <p>
@@ -69,7 +95,10 @@
 
 <div>
   <h2>Skiped Questions:</h2>
-  <p>Number of Skipped Answers: {{ scores.skipped }}</p>
+  <p>
+    Number of <strong style="color: rgb(32, 5, 107)">Skipped</strong> Answers:
+    {{ scores.skipped }}
+  </p>
   <div>
     <ul>
       <li

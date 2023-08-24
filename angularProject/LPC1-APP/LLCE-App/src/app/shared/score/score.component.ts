@@ -24,6 +24,5 @@ export class ScoreComponent {
 
   isArray(answer: string | string[]): boolean {
     return Array.isArray(answer);
-
   }
 }

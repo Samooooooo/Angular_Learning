@@ -21,7 +21,7 @@ export class CheckQDetailsComponent {
   selectedAnswer: string[] = [];
   score: Score | undefined;
   countDown = 0;
-  maxWrong = 7
+  maxWrong = 7;
 
   constructor(
     private service: QuestionService,
@@ -32,7 +32,6 @@ export class CheckQDetailsComponent {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const index = this.route.snapshot.paramMap.get('index')!;
     this.question$ = this.service.getSingle(index);
-    this.router.navigate(['check', '0']);
     this.questions$ = this.service.getQuestions();
   }
 
@@ -69,8 +68,7 @@ export class CheckQDetailsComponent {
     question.selectedAnswer = answers;
     this.ScoreService.calculateUpdatedScores(question, answers);
     this.selectedAnswer = [];
-    if (this.ScoreService.isExamRoute() &&
-    this.ScoreService.scores.wrong == this.maxWrong) {
+    if (this.ScoreService.scores.wrong == this.maxWrong) {
       this.router.navigate(['scores']);
       console.log('finish');
     }

@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { Question } from '../question';
 import { Score } from '../score';
 import { Router } from '@angular/router';
-import { QuestionService } from '../question.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ScoreService {
-   scores: Score = {
+  scores: Score = {
     wrong: 0,
     skipped: 0,
     remaining: 120,
@@ -21,10 +20,7 @@ export class ScoreService {
   getScores() {
     return this.scores;
   }
-  constructor(
-    private router: Router,
-    private service: QuestionService,
-  ) { }
+  constructor(private router: Router) {}
 
   updateScores(updatedScores: Score) {
     this.scores = updatedScores;
@@ -58,9 +54,10 @@ export class ScoreService {
         ) {
           updatedScores.skipedQuestions.push(question);
         }
-
-      }
-      else if (isCorrect && answers.length === question.correctAnswer.length) {
+      } else if (
+        isCorrect &&
+        answers.length === question.correctAnswer.length
+      ) {
         if (this.isExamRoute()) {
           updatedScores.wrongQuestions = updatedScores.wrongQuestions.filter(
             (q) => q.index !== question.index,
@@ -79,10 +76,17 @@ export class ScoreService {
           if (
             !this.scores.wrongQuestions.includes(question) &&
             !this.scores.wrongQuestions.some(
-              (q) => q.selectedAnswer[0] === question.selectedAnswer[0]
+              (q) => q.selectedAnswer[0] === question.selectedAnswer[0],
             )
           ) {
             updatedScores.wrongQuestions.push(question);
+          }
+          if (
+            this.scores.rightQuestions.some((rq) => rq.index === question.index)
+          ) {
+            updatedScores.rightQuestions = updatedScores.rightQuestions.filter(
+              (q) => q.index !== question.index,
+            );
           }
         }
       }
@@ -101,10 +105,17 @@ export class ScoreService {
         if (
           !this.scores.wrongQuestions.includes(question) &&
           !this.scores.wrongQuestions.some(
-            (q) => q.selectedAnswer[0] === question.selectedAnswer[0]
+            (q) => q.selectedAnswer[0] === question.selectedAnswer[0],
           )
         ) {
           updatedScores.wrongQuestions.push(question);
+        }
+        if (
+          this.scores.rightQuestions.some((rq) => rq.index === question.index)
+        ) {
+          updatedScores.rightQuestions = updatedScores.rightQuestions.filter(
+            (q) => q.index !== question.index,
+          );
         }
       }
     }

@@ -31,7 +31,6 @@ export class ExamQDetailsComponent {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const index = this.route.snapshot.paramMap.get('index')!;
     this.question$ = this.service.getSingle(index);
-    this.router.navigate(['exam', '0']);
     this.questions$ = this.service.getQuestions();
   }
 
@@ -49,10 +48,13 @@ export class ExamQDetailsComponent {
     question.selectedAnswer = answers;
     this.ScoreService.calculateUpdatedScores(question, answers);
     this.selectedAnswer = [];
-    if (this.ScoreService.isExamRoute() && this.ScoreService.scores.wrong == 3) {
-      setTimeout(()=>{
+    if (
+      this.ScoreService.isExamRoute() &&
+      this.ScoreService.scores.wrong == this.service.questionsLength * 0.2
+    ) {
+      setTimeout(() => {
         this.router.navigate(['scores']);
-      },500)
+      }, 500);
     }
   }
   showNextQuestion(question: Question) {
