@@ -8,7 +8,7 @@ import { QuestionService } from '../question.service';
   providedIn: 'root',
 })
 export class ScoreService {
-  private scores: Score = {
+   scores: Score = {
     wrong: 0,
     skipped: 0,
     remaining: 120,
@@ -24,7 +24,7 @@ export class ScoreService {
   constructor(
     private router: Router,
     private service: QuestionService,
-  ) {}
+  ) { }
 
   updateScores(updatedScores: Score) {
     this.scores = updatedScores;
@@ -51,7 +51,16 @@ export class ScoreService {
       const isCorrect = answers.every((answer) =>
         correctAnswersFirstChars.includes(answer.charAt(0)),
       );
-      if (isCorrect && answers.length === question.correctAnswer.length) {
+      if (question.skipped) {
+        if (
+          !this.scores.rightQuestions.some((q) => q.index === question.index) &&
+          !this.scores.skipedQuestions.some((q) => q.index === question.index)
+        ) {
+          updatedScores.skipedQuestions.push(question);
+        }
+
+      }
+      else if (isCorrect && answers.length === question.correctAnswer.length) {
         if (this.isExamRoute()) {
           updatedScores.wrongQuestions = updatedScores.wrongQuestions.filter(
             (q) => q.index !== question.index,
@@ -65,31 +74,14 @@ export class ScoreService {
         ) {
           updatedScores.rightQuestions.push(question);
         }
-      } else if (question.skipped) {
-        if (
-          !this.scores.rightQuestions.some((q) => q.index === question.index) &&
-          !this.scores.skipedQuestions.some((q) => q.index === question.index)
-        ) {
-          updatedScores.skipedQuestions.push(question);
-        }
       } else {
-        if (
-          Array.isArray(answers) &&
-          answers.length !== 0 &&
-          !question.skipped
-        ) {
+        if (Array.isArray(answers) && answers.length !== 0) {
           if (
+            !this.scores.wrongQuestions.includes(question) &&
             !this.scores.wrongQuestions.some(
-              (wq) => wq.index === question.index,
+              (q) => q.selectedAnswer[0] === question.selectedAnswer[0]
             )
           ) {
-            updatedScores.wrongQuestions.push(question);
-          } else if (
-            this.scores.wrongQuestions.findIndex(
-              (wq) => wq.selectedAnswer === question.selectedAnswer,
-            ) == -1
-          ) {
-            console.log('asddasdasfas');
             updatedScores.wrongQuestions.push(question);
           }
         }
@@ -107,28 +99,18 @@ export class ScoreService {
         }
       } else if (answers !== '') {
         if (
-          this.scores.wrongQuestions.some((wq) => wq.index === question.index)
-        )
-          if (
-            !this.scores.wrongQuestions.some((wq) =>
-              wq.selectedAnswer.includes(answers),
-            )
-          ) {
-            updatedScores.wrongQuestions.push(question);
-            console.log('fillin');
-          }
+          !this.scores.wrongQuestions.includes(question) &&
+          !this.scores.wrongQuestions.some(
+            (q) => q.selectedAnswer[0] === question.selectedAnswer[0]
+          )
+        ) {
+          updatedScores.wrongQuestions.push(question);
+        }
       }
     }
     updatedScores.answersCounter = updatedScores.rightQuestions.length;
     updatedScores.skipped = updatedScores.skipedQuestions.length;
     updatedScores.wrong = updatedScores.wrongQuestions.length;
     this.updateScores(updatedScores);
-    if (
-      this.service.questionsLength * 0.2 ===
-      this.scores.wrongQuestions.length
-    ) {
-      this.router.navigate(['score']);
-      console.log('finish');
-    }
   }
 }

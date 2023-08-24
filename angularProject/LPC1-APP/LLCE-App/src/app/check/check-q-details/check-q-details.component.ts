@@ -21,6 +21,7 @@ export class CheckQDetailsComponent {
   selectedAnswer: string[] = [];
   score: Score | undefined;
   countDown = 0;
+  maxWrong = 7
 
   constructor(
     private service: QuestionService,
@@ -68,6 +69,11 @@ export class CheckQDetailsComponent {
     question.selectedAnswer = answers;
     this.ScoreService.calculateUpdatedScores(question, answers);
     this.selectedAnswer = [];
+    if (this.ScoreService.isExamRoute() &&
+    this.ScoreService.scores.wrong == this.maxWrong) {
+      this.router.navigate(['scores']);
+      console.log('finish');
+    }
   }
 
   skipQuestion(question: Question, answers: string | string[]) {

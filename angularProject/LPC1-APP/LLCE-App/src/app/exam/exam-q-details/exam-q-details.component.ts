@@ -49,6 +49,11 @@ export class ExamQDetailsComponent {
     question.selectedAnswer = answers;
     this.ScoreService.calculateUpdatedScores(question, answers);
     this.selectedAnswer = [];
+    if (this.ScoreService.isExamRoute() && this.ScoreService.scores.wrong == 3) {
+      setTimeout(()=>{
+        this.router.navigate(['scores']);
+      },500)
+    }
   }
   showNextQuestion(question: Question) {
     const nextIndex = (parseInt(question.index) + 1).toString();
