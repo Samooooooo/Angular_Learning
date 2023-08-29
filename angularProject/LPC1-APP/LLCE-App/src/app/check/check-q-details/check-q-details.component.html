@@ -45,6 +45,9 @@
               <button
                 style="margin-left: 1em"
                 (click)="checkAnswerAndNavigate(q, inputAnswer.value)"
+                [disabled]="countDownBo"
+                [disabled]="noOptionSwitch"
+                [disabled]="lastQswitch"
               >
                 Next Question
               </button>
@@ -57,22 +60,31 @@
           *ngIf="q.questionType !== 'fill-in'"
           style="margin-left: 1em"
           (click)="checkAnswerAndNavigate(q, selectedAnswer)"
+          [disabled]="countDownBo"
+          [disabled]="noOptionSwitch"
+          [disabled]="lastQswitch"
         >
           Next Question
         </button>
         <button
           style="margin-left: 1em; margin-top: 10px"
           (click)="showPreviosQuestion(q)"
+          [disabled]="countDownBo"
+          [disabled]="noOptionSwitch"
+          [disabled]="lastQswitch"
         >
           Previous Question
         </button>
         <button
           style="margin-left: 1em; margin-top: 10px"
           (click)="skipQuestion(q, selectedAnswer)"
+          [disabled]="countDownBo"
+          [disabled]="noOptionSwitch"
+          [disabled]="lastQswitch"
         >
           Skip
         </button>
-        <div style="display: inline-flexbox;">
+        <div style="display: inline-flexbox">
           <div *ngIf="lastQswitch" style="color: rgb(255, 0, 0)">
             <h6>{{ lastQError }}</h6>
           </div>
@@ -92,8 +104,9 @@
   <button routerLink="/">Back</button>
   <button style="margin-left: 1em" routerLink="/scores">Score</button>
 </div>
-<div style="margin-top: 1em;" *ngIf="countDown > 0">
-  <span style="color: red;"
-    >Wrong Answer you will be redirected to the Previous Question in <strong>{{ countDown }}</strong> seconds</span
+<div style="margin-top: 1em" *ngIf="countDown > 0">
+  <span style="color: red"
+    >Wrong Answer you will be redirected to the Previous Question in
+    <strong>{{ countDown }}</strong> seconds</span
   >
 </div>

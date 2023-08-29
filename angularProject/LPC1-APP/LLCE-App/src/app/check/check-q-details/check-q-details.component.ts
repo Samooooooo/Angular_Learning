@@ -22,6 +22,7 @@ export class CheckQDetailsComponent {
   score: Score | undefined;
   countDown = 0;
   maxWrong = 7;
+  countDownBo = false;
 
   constructor(
     private service: QuestionService,
@@ -51,9 +52,11 @@ export class CheckQDetailsComponent {
           this.showNextQuestion(question);
         } else {
           this.countDown = 3;
+          this.countDownBo = true;
           this.countDownM();
           setTimeout(() => {
             this.showPreviosQuestion(question);
+            this.countDownBo = false;
           }, 3000);
         }
       } else {
@@ -65,6 +68,9 @@ export class CheckQDetailsComponent {
         }
       }
     }
+    setTimeout(() => {
+      this.noOptionSwitch = false;
+    }, 1000);
     question.selectedAnswer = answers;
     this.ScoreService.calculateUpdatedScores(question, answers);
     this.selectedAnswer = [];
@@ -104,6 +110,9 @@ export class CheckQDetailsComponent {
       this.router.navigate(['check', prevIndex]);
     } else {
       this.lastQswitch = true;
+      setTimeout(() => {
+        this.lastQswitch = false;
+      }, 1000);
     }
   }
   packInArray(option: string) {

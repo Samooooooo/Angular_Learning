@@ -1,0 +1,680 @@
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/check/check.module.ts =====
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { CheckRoutingModule } from './check-routing.module';
+import { CheckQDetailsComponent } from './check-q-details/check-q-details.component';
+
+@NgModule({
+  declarations: [CheckQDetailsComponent],
+  imports: [CommonModule, CheckRoutingModule, FormsModule],
+})
+export class CheckModule {}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/check/check-routing.module.ts =====
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { CheckQDetailsComponent } from './check-q-details/check-q-details.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: CheckQDetailsComponent,
+  },
+  {
+    path: ':index',
+    component: CheckQDetailsComponent,
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class CheckRoutingModule {}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/check/check-q-details/check-q-details.component.spec.ts =====
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { CheckQDetailsComponent } from './check-q-details.component';
+
+describe('CheckQDetailsComponent', () => {
+  let component: CheckQDetailsComponent;
+  let fixture: ComponentFixture<CheckQDetailsComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [CheckQDetailsComponent],
+    });
+    fixture = TestBed.createComponent(CheckQDetailsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/check/check-q-details/check-q-details.component.ts =====
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Question } from 'src/app/shared/question';
+import { QuestionService } from 'src/app/shared/question.service';
+import { Score } from 'src/app/shared/score';
+import { ScoreService } from 'src/app/shared/score/score.service';
+
+@Component({
+  selector: 'lpc-check-q-details',
+  templateUrl: './check-q-details.component.html',
+  styleUrls: ['./check-q-details.component.css'],
+})
+export class CheckQDetailsComponent {
+  question$: Observable<Question>;
+  questions$: Observable<Question[]>;
+  lastQError = 'No more Questions';
+  lastQswitch = false;
+  noOptionError = 'No Answer!!!';
+  noOptionSwitch = false;
+  selectedAnswer: string[] = [];
+  score: Score | undefined;
+  countDown = 0;
+  maxWrong = 7;
+
+  constructor(
+    private service: QuestionService,
+    private ScoreService: ScoreService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const index = this.route.snapshot.paramMap.get('index')!;
+    this.question$ = this.service.getSingle(index);
+    this.questions$ = this.service.getQuestions();
+  }
+
+  checkAnswerAndNavigate(question: Question, answers: string | string[]) {
+    question.skipped = false;
+    if (answers === '' || (Array.isArray(answers) && answers.length === 0)) {
+      this.noOptionSwitch = true;
+    } else {
+      if (Array.isArray(answers)) {
+        const correctAnswersFirstChars = question.correctAnswer.map((correct) =>
+          correct.charAt(0),
+        );
+        const isCorrect = answers.every((answer) =>
+          correctAnswersFirstChars.includes(answer.charAt(0)),
+        );
+        if (isCorrect && answers.length === question.correctAnswer.length) {
+          this.showNextQuestion(question);
+        } else {
+          this.countDown = 3;
+          this.countDownM();
+          setTimeout(() => {
+            this.showPreviosQuestion(question);
+          }, 3000);
+        }
+      } else {
+        //For Fill IN
+        if (answers.includes(question.correctAnswer[0])) {
+          this.showNextQuestion(question);
+        } else {
+          this.showPreviosQuestion(question);
+        }
+      }
+    }
+    question.selectedAnswer = answers;
+    this.ScoreService.calculateUpdatedScores(question, answers);
+    this.selectedAnswer = [];
+    if (this.ScoreService.scores.wrong == this.maxWrong) {
+      this.router.navigate(['scores']);
+      console.log('finish');
+    }
+  }
+
+  skipQuestion(question: Question, answers: string | string[]) {
+    question.skipped = true;
+    this.showNextQuestion(question);
+    this.ScoreService.calculateUpdatedScores(question, answers);
+  }
+
+  showNextQuestion(question: Question) {
+    const nextIndex = (parseInt(question.index) + 1).toString();
+
+    this.questions$.subscribe((questions) => {
+      if (parseInt(nextIndex) < questions.length) {
+        this.lastQswitch = false;
+        this.noOptionSwitch = false;
+        this.question$ = this.service.getSingle(nextIndex);
+        this.router.navigate(['check', nextIndex]);
+      } else {
+        this.router.navigate(['scores']);
+      }
+    });
+  }
+
+  showPreviosQuestion(question: Question) {
+    const prevIndex = (parseInt(question.index) - 1).toString();
+
+    if (parseInt(prevIndex) >= 0) {
+      this.lastQswitch = false;
+      this.question$ = this.service.getSingle(prevIndex);
+      this.router.navigate(['check', prevIndex]);
+    } else {
+      this.lastQswitch = true;
+    }
+  }
+  packInArray(option: string) {
+    if (this.selectedAnswer.includes(option)) {
+      this.selectedAnswer = this.selectedAnswer.filter(
+        (item) => item !== option,
+      );
+    } else {
+      this.selectedAnswer.push(option);
+    }
+  }
+  countDownM() {
+    if (this.countDown > 0) {
+      setTimeout(() => {
+        this.countDown--;
+        this.countDownM();
+      }, 1000);
+    }
+  }
+}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/check/check-q-details/check-q-details.component.html =====
+<div *ngIf="question$ | async as q">
+  <div
+    class="WBackG"
+    style="
+      margin-top: 1em;
+      border: 5px solid rgba(128, 128, 128, 0.573);
+      border-radius: 5px;
+      padding: 10px;
+      padding-bottom: 2em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.9);
+    "
+  >
+    <div class="WBackG">
+      <h3>{{ q.question }}</h3>
+      <div>
+        <ul>
+          <li *ngFor="let o of q.options">
+            <ng-container *ngIf="q.questionType === 'single-choice'">
+              <label>
+                <input
+                  type="radio"
+                  name="answer"
+                  (change)="selectedAnswer = [o]"
+                />
+                {{ o }}
+              </label>
+            </ng-container>
+            <ng-container *ngIf="q.questionType === 'multiple-choice'">
+              <label>
+                <input
+                  type="checkbox"
+                  name="answer"
+                  (change)="packInArray(o)"
+                />
+                {{ o }}
+              </label>
+            </ng-container>
+          </li>
+          <ng-container *ngIf="q.questionType === 'fill-in'">
+            <li>
+              <input type="text" #inputAnswer />
+              <button
+                style="margin-left: 1em"
+                (click)="checkAnswerAndNavigate(q, inputAnswer.value)"
+              >
+                Next Question
+              </button>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <div style="height: 3em">
+        <button
+          *ngIf="q.questionType !== 'fill-in'"
+          style="margin-left: 1em"
+          (click)="checkAnswerAndNavigate(q, selectedAnswer)"
+        >
+          Next Question
+        </button>
+        <button
+          style="margin-left: 1em; margin-top: 10px"
+          (click)="showPreviosQuestion(q)"
+        >
+          Previous Question
+        </button>
+        <button
+          style="margin-left: 1em; margin-top: 10px"
+          (click)="skipQuestion(q, selectedAnswer)"
+        >
+          Skip
+        </button>
+        <div style="display: inline-flexbox;">
+          <div *ngIf="lastQswitch" style="color: rgb(255, 0, 0)">
+            <h6>{{ lastQError }}</h6>
+          </div>
+          <div *ngIf="noOptionSwitch" style="color: rgb(253, 1, 1)">
+            <h6>{{ noOptionError }}</h6>
+          </div>
+        </div>
+        <p *ngIf="q.showAnswer">
+          <strong>Answer: </strong>{{ q.correctAnswer }}
+        </p>
+      </div>
+      <br />
+    </div>
+    <br />
+    <br />
+  </div>
+  <button routerLink="/">Back</button>
+  <button style="margin-left: 1em" routerLink="/scores">Score</button>
+</div>
+<div style="margin-top: 1em;" *ngIf="countDown > 0">
+  <span style="color: red;"
+    >Wrong Answer you will be redirected to the Previous Question in <strong>{{ countDown }}</strong> seconds</span
+  >
+</div>
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/learn/learn-routing.module.ts =====
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { QuestionListComponent } from './question-list/question-list.component';
+import { QuestionDetailsComponent } from './question-details/question-details.component';
+
+const routes: Routes = [
+  { path: '', component: QuestionListComponent },
+  {
+    path: ':index',
+    component: QuestionDetailsComponent,
+    data: { comnam: 'hohohoho' },
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class LearnRoutingModule {}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/learn/learn.module.ts =====
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { LearnRoutingModule } from './learn-routing.module';
+import { QuestionListComponent } from './question-list/question-list.component';
+import { QuestionDetailsComponent } from './question-details/question-details.component';
+
+@NgModule({
+  declarations: [QuestionListComponent, QuestionDetailsComponent],
+  imports: [CommonModule, LearnRoutingModule],
+})
+export class LearnModule {}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/learn/question-list/question-list.component.ts =====
+import { Component } from '@angular/core';
+import { Question } from '../../shared/question';
+import { QuestionService } from '../../shared/question.service';
+import { Observable } from 'rxjs';
+
+@Component({
+  selector: 'lpc-question-list',
+  templateUrl: './question-list.component.html',
+  styleUrls: ['./question-list.component.css'],
+})
+export class QuestionListComponent {
+  questions$: Observable<Question[]>;
+
+  constructor(private Service: QuestionService) {
+    this.questions$ = this.Service.getQuestions();
+  }
+
+  showAnswer(question: Question) {
+    question.showAnswer = true;
+  }
+}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/learn/question-list/question-list.component.spec.ts =====
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { QuestionListComponent } from './question-list.component';
+
+describe('QuestionListComponent', () => {
+  let component: QuestionListComponent;
+  let fixture: ComponentFixture<QuestionListComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [QuestionListComponent],
+    });
+    fixture = TestBed.createComponent(QuestionListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/learn/question-list/question-list.component.html =====
+<div class="scroll-container">
+  <ul *ngIf="questions$ | async as questions">
+    <li
+      *ngFor="let q of questions"
+      style="
+        list-style: none;
+        border: 5px solid rgba(128, 128, 128, 0.573);
+        border-radius: 5px;
+        padding: 10px;
+        padding-bottom: 2em;
+        margin-bottom: 10px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.9);
+      "
+    >
+      <a
+        *ngIf="q"
+        [routerLink]="q.index"
+        style="text-decoration: none; color: black"
+      >
+        <div class="listItem">
+          <h3>{{ q.question }}</h3>
+          <ul>
+            <li *ngFor="let o of q.options">
+              <p>{{ o }}</p>
+            </li>
+          </ul>
+        </div>
+      </a>
+      <div style="height: 3em">
+        <button (click)="showAnswer(q)">Show Answer</button>
+        <p *ngIf="q.showAnswer">
+          <strong>Answer: </strong>{{ q.correctAnswer }}
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
+<br />
+<button routerLink="..">Home</button>
+<button style="margin-left: 1em" routerLink="/learn/0">Single Mode</button>
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/learn/question-details/question-details.component.html =====
+<div *ngIf="question$ | async as q">
+  <body>
+    <div
+      class="listItem"
+      style="
+        margin-top: 1em;
+        border: 5px solid rgba(128, 128, 128, 0.573);
+        border-radius: 5px;
+        padding: 10px;
+        padding-bottom: 2em;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-start;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.9);
+      "
+    >
+      <div style="flex: 1">
+        <h3>{{ q.question }}</h3>
+        <ul>
+          <li *ngFor="let o of q.options">
+            <p>{{ o }}</p>
+          </li>
+        </ul>
+        <div style="height: 3em">
+          <button (click)="showAnswer(q)">Show Answer</button>
+          <button style="margin-left: 1em" (click)="showNextQuestion(q)">
+            Next Question
+          </button>
+          <button style="margin-left: 1em" (click)="showPreviosQuestion(q)">
+            Previos Question
+          </button>
+          <div *ngIf="lastQswitch" style="color: rgb(8, 8, 8)">
+            <h6>{{ lastQError }}</h6>
+          </div>
+          <p *ngIf="q.showAnswer">
+            <strong>Answer: </strong>{{ q.correctAnswer }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <br />
+  <br />
+</div>
+<button routerLink="..">Back</button>
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/learn/question-details/question-details.component.spec.ts =====
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { QuestionDetailsComponent } from './question-details.component';
+
+describe('QuestionDetailsComponent', () => {
+  let component: QuestionDetailsComponent;
+  let fixture: ComponentFixture<QuestionDetailsComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [QuestionDetailsComponent],
+    });
+    fixture = TestBed.createComponent(QuestionDetailsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/learn/question-details/question-details.component.ts =====
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Question } from 'src/app/shared/question';
+import { QuestionService } from 'src/app/shared/question.service';
+
+@Component({
+  selector: 'lpc-question-details',
+  templateUrl: './question-details.component.html',
+  styleUrls: ['./question-details.component.css'],
+})
+export class QuestionDetailsComponent {
+  question$: Observable<Question>;
+  questions$: Observable<Question[]>;
+  lastQError = 'No more Questions';
+  lastQswitch = false;
+
+  constructor(
+    private service: QuestionService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const index = this.route.snapshot.paramMap.get('index')!;
+    this.question$ = this.service.getSingle(index);
+    this.questions$ = this.service.getQuestions();
+  }
+  showAnswer(question: Question) {
+    question.showAnswer = true;
+  }
+
+  showNextQuestion(question: Question) {
+    const nextIndex = (parseInt(question.index) + 1).toString();
+    this.lastQswitch = false;
+    this.questions$.subscribe((questions) => {
+      if (parseInt(nextIndex) === questions.length) {
+        this.lastQswitch = true;
+        this.router.navigate(['learn', question.index]);
+      } else {
+        this.question$ = this.service.getSingle(nextIndex);
+        this.router.navigate(['learn', nextIndex]);
+      }
+    });
+  }
+
+  showPreviosQuestion(question: Question) {
+    const PreviosIndex = (parseInt(question.index) - 1).toString();
+    this.lastQswitch = false;
+    if (parseInt(PreviosIndex) < 0) {
+      this.lastQswitch = true;
+    } else {
+      this.question$ = this.service.getSingle(PreviosIndex);
+      this.router.navigate(['learn', PreviosIndex]);
+    }
+  }
+}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/home/home.component.spec.ts =====
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { HomeComponent } from './home.component';
+
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [HomeComponent],
+    });
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/home/home.component.ts =====
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'lpc-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
+})
+export class HomeComponent {}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/home/home.component.html =====
+<div class="WBackG">
+  <section class="about-section">
+    <h2>LPIC-101 larning App</h2>
+    <p>
+      Welcome to our educational platform! Explore our learning modes to
+      practice, check your understanding, and simulate exams. Elevate your
+      learning journey with interactive tools designed to support your academic
+      growth.
+    </p>
+  </section>
+</div>
+
+<section class="mode-section">
+  <a routerLink="/learn">
+    <h2>Learn Mode</h2>
+    <p>Practice and learn at your own pace.</p>
+  </a>
+</section>
+
+<section class="mode-section">
+  <a routerLink="/check/0">
+    <h2>Check Mode</h2>
+    <p>Check your answers and get instant feedback.</p>
+  </a>
+</section>
+
+<section class="mode-section">
+  <a routerLink="/exam/0">
+    <h2>Exam Mode</h2>
+    <p>Simulate an exam environment to test your knowledge.</p>
+  </a>
+</section>
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/header/header.component.html =====
+<div class="nav-container" style="margin-bottom: 3em">
+  <img
+    class="logo"
+    [src]="
+      '/assets/web-concept-e-learning-academic-cap-computer-monitor-logo-blue-lines-your-site-design-app-ui-stock-vector-eps-185181233.webp'
+    "
+    alt="Logo will be here"
+  />
+  <div class="nav-buttons">
+    <button [routerLink]="['home']" [routerLinkActive]="'active'">Home</button>
+    <button [routerLink]="['learn']" [routerLinkActive]="'active'">
+      Learn
+    </button>
+    <button [routerLink]="['check/0']" [routerLinkActive]="'active'">
+      Check
+    </button>
+    <button [routerLink]="['exam/0']" [routerLinkActive]="'active'">
+      Exam
+    </button>
+  </div>
+</div>
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/header/header.component.spec.ts =====
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { HeaderComponent } from './header.component';
+
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [HeaderComponent],
+    });
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/header/header.component.ts =====
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'lpc-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
+})
+export class HeaderComponent {}
+
+

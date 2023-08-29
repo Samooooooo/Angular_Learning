@@ -1,0 +1,812 @@
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/app.component.spec.ts =====
+import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () => {
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [AppComponent],
+    }),
+  );
+
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'LLCE-App'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('LLCE-App');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.content span')?.textContent).toContain(
+      'LLCE-App app is running!',
+    );
+  });
+});
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/app.component.ts =====
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'lpc-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent {
+  title = 'LLCE-App';
+}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/app-routing.module.ts =====
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { ScoreComponent } from './shared/score/score.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
+    path: 'check',
+    loadChildren: () =>
+      import('./check/check.module').then((m) => m.CheckModule),
+  },
+  {
+    path: 'exam',
+    loadChildren: () => import('./exam/exam.module').then((m) => m.ExamModule),
+    data: { componentName: 'exam' },
+  },
+  {
+    path: 'learn',
+    loadChildren: () =>
+      import('./learn/learn.module').then((m) => m.LearnModule),
+  },
+  {
+    path: 'scores',
+    component: ScoreComponent,
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/app.component.html =====
+<header>
+  <lpc-header></lpc-header>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/app.module.ts =====
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { LearnModule } from './learn/learn.module';
+import { CheckModule } from './check/check.module';
+import { ExamModule } from './exam/exam.module';
+import { ScoreComponent } from './shared/score/score.component';
+
+@NgModule({
+  declarations: [AppComponent, HomeComponent, HeaderComponent, ScoreComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    LearnModule,
+    CheckModule,
+    ExamModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/exam/exam.module.ts =====
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { ExamRoutingModule } from './exam-routing.module';
+import { ExamQDetailsComponent } from './exam-q-details/exam-q-details.component';
+
+@NgModule({
+  declarations: [ExamQDetailsComponent],
+  imports: [CommonModule, ExamRoutingModule],
+})
+export class ExamModule {}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/exam/exam-routing.module.ts =====
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ExamQDetailsComponent } from './exam-q-details/exam-q-details.component';
+
+const routes: Routes = [
+  { path: '', component: ExamQDetailsComponent },
+  {
+    path: ':index',
+    component: ExamQDetailsComponent,
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class ExamRoutingModule {}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/exam/exam-q-details/exam-q-details.component.html =====
+<div *ngIf="question$ | async as q">
+  <div
+    class="WBackG"
+    style="
+      margin-top: 1em;
+      border: 5px solid rgba(128, 128, 128, 0.573);
+      border-radius: 5px;
+      padding: 10px;
+      padding-bottom: 2em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.9);
+    "
+  >
+    <div>
+      <h3>{{ q.question }}</h3>
+      <div>
+        <ul>
+          <li *ngFor="let o of q.options">
+            <ng-container *ngIf="q.questionType === 'single-choice'">
+              <label>
+                <input
+                  type="radio"
+                  name="answer"
+                  (change)="selectedAnswer = [o]"
+                />
+                {{ o }}
+              </label>
+            </ng-container>
+            <ng-container *ngIf="q.questionType === 'multiple-choice'">
+              <label>
+                <input
+                  type="checkbox"
+                  name="answer"
+                  (change)="packInArray(o)"
+                />
+                {{ o }}
+              </label>
+            </ng-container>
+          </li>
+          <ng-container *ngIf="q.questionType === 'fill-in'">
+            <li>
+              <input type="text" #inputAnswer />
+              <button
+                style="margin-left: 1em"
+                (click)="checkAnswerAndNavigate(q, inputAnswer.value)"
+              >
+                Submit
+              </button>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <div style="height: 3em">
+        <button
+          *ngIf="q.questionType !== 'fill-in'"
+          style="margin-left: 1em"
+          (click)="checkAnswerAndNavigate(q, selectedAnswer)"
+        >
+          Submit
+        </button>
+        <button
+          style="margin-left: 1em; margin-top: 10px"
+          (click)="showPreviosQuestion(q)"
+        >
+          Previous Question
+        </button>
+        <div *ngIf="lastQswitch" style="color: rgb(255, 0, 0)">
+          <h6>{{ lastQError }}</h6>
+        </div>
+        <div *ngIf="noOptionSwitch" style="color: rgb(253, 1, 1)">
+          <h6>{{ noOptionError }}</h6>
+        </div>
+        <p *ngIf="q.showAnswer">
+          <strong>Answer: </strong>{{ q.correctAnswer }}
+        </p>
+      </div>
+    </div>
+    <br />
+    <br />
+  </div>
+  <button routerLink="/">Back</button>
+  <button style="margin-left: 1em" routerLink="/scores">Finished</button>
+</div>
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/exam/exam-q-details/exam-q-details.component.ts =====
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Question } from 'src/app/shared/question';
+import { QuestionService } from 'src/app/shared/question.service';
+import { Score } from 'src/app/shared/score';
+import { ScoreService } from 'src/app/shared/score/score.service';
+
+@Component({
+  selector: 'lpc-exam-q-details',
+  templateUrl: './exam-q-details.component.html',
+  styleUrls: ['./exam-q-details.component.css'],
+})
+export class ExamQDetailsComponent {
+  question$: Observable<Question>;
+  questions$: Observable<Question[]>;
+  lastQError = 'No more Questions';
+  lastQswitch = false;
+  noOptionError = 'No Answer!!!';
+  noOptionSwitch = false;
+  selectedAnswer: string[] = [];
+  score: Score | undefined;
+  countDown = 0;
+
+  constructor(
+    private service: QuestionService,
+    private ScoreService: ScoreService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const index = this.route.snapshot.paramMap.get('index')!;
+    this.question$ = this.service.getSingle(index);
+    this.questions$ = this.service.getQuestions();
+  }
+
+  checkAnswerAndNavigate(question: Question, answers: string | string[]) {
+    if (answers === '' || (Array.isArray(answers) && answers.length === 0)) {
+      this.noOptionSwitch = true;
+    } else {
+      if (Array.isArray(answers)) {
+        this.showNextQuestion(question);
+      } else {
+        //For Fill IN
+        this.showNextQuestion(question);
+      }
+    }
+    question.selectedAnswer = answers;
+    this.ScoreService.calculateUpdatedScores(question, answers);
+    this.selectedAnswer = [];
+    if (
+      this.ScoreService.isExamRoute() &&
+      this.ScoreService.scores.wrong == this.service.questionsLength * 0.2
+    ) {
+      setTimeout(() => {
+        this.router.navigate(['scores']);
+      }, 500);
+    }
+  }
+  showNextQuestion(question: Question) {
+    const nextIndex = (parseInt(question.index) + 1).toString();
+
+    this.questions$.subscribe((questions) => {
+      if (parseInt(nextIndex) < questions.length) {
+        this.lastQswitch = false;
+        this.noOptionSwitch = false;
+        this.question$ = this.service.getSingle(nextIndex);
+        this.router.navigate(['exam', nextIndex]);
+      } else {
+        this.router.navigate(['scores']);
+      }
+    });
+  }
+
+  showPreviosQuestion(question: Question) {
+    const prevIndex = (parseInt(question.index) - 1).toString();
+
+    if (parseInt(prevIndex) >= 0) {
+      this.lastQswitch = false;
+      this.question$ = this.service.getSingle(prevIndex);
+      this.router.navigate(['exam', prevIndex]);
+    } else {
+      this.lastQswitch = true;
+    }
+  }
+  packInArray(option: string) {
+    if (this.selectedAnswer.includes(option)) {
+      this.selectedAnswer = this.selectedAnswer.filter(
+        (item) => item !== option,
+      );
+    } else {
+      this.selectedAnswer.push(option);
+    }
+  }
+}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/exam/exam-q-details/exam-q-details.component.spec.ts =====
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ExamQDetailsComponent } from './exam-q-details.component';
+
+describe('ExamQDetailsComponent', () => {
+  let component: ExamQDetailsComponent;
+  let fixture: ComponentFixture<ExamQDetailsComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ExamQDetailsComponent],
+    });
+    fixture = TestBed.createComponent(ExamQDetailsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/shared/score.ts =====
+import { Question } from './question';
+
+export interface Score {
+  wrong: number;
+  skipped: number;
+  remaining: number;
+  wrongQuestions: Question[];
+  skipedQuestions: Question[];
+  rightQuestions: Question[];
+  answersCounter: number;
+}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/shared/question.service.spec.ts =====
+import { TestBed } from '@angular/core/testing';
+
+import { QuestionService } from './question.service';
+
+describe('QuestionService', () => {
+  let service: QuestionService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(QuestionService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/shared/question.ts =====
+export interface Question {
+  index: string;
+  questionType: string;
+  question: string;
+  options: string[];
+  correctAnswer: string[];
+  showAnswer: boolean;
+  skipped: boolean;
+  selectedAnswer: string | string[];
+}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/shared/question.service.ts =====
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
+import { Question } from './question';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class QuestionService {
+  private jsonFilePath = 'assets/output.json';
+
+  questions: Question[] = [];
+  questionsLength = 0;
+
+  constructor(private http: HttpClient) {
+    this.getLength();
+  }
+  getQuestions(): Observable<Question[]> {
+    return this.http.get<Question[]>(this.jsonFilePath);
+  }
+
+  getSingle(index: string): Observable<Question> {
+    return this.http.get<Question[]>(this.jsonFilePath).pipe(
+      map((questions: Question[]) => {
+        const foundQuestion = questions.find((q) => q.index == index);
+        if (foundQuestion) {
+          return foundQuestion;
+        } else {
+          throw new Error('Question not found');
+        }
+      }),
+    );
+  }
+  getLength() {
+    return this.http
+      .get<Question[]>(this.jsonFilePath)
+      .subscribe((questions) => {
+        this.questionsLength = questions.length;
+        console.log(this.questionsLength);
+        console.log(questions.length);
+      });
+  }
+}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/shared/score/score.service.spec.ts =====
+import { TestBed } from '@angular/core/testing';
+
+import { ScoreService } from './score.service';
+
+describe('ScoreService', () => {
+  let service: ScoreService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(ScoreService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/shared/score/score.component.html =====
+<div style="border: solid gray; border-radius: 6px; margin: 1em; padding-left: 1em;">
+  <h2 style="color: green">Correct: {{ scores.answersCounter }}</h2>
+  <h2 style="color: red">Wrong: {{ scores.wrong }}</h2>
+  <h2 style="color: rgb(32, 5, 107)">Skipped: {{ scores.skipped }}</h2>
+  <h2 style="color: rgb(214, 129, 0)">
+    Rest:
+    {{
+      questionsInTotal - scores.answersCounter - scores.wrong - scores.skipped
+    }}
+  </h2>
+</div>
+<h1>
+  Your Score is
+  <strong style="color: rgba(26, 70, 26, 0.651)">
+    {{ (scores.answersCounter * 100) / questionsInTotal | number: "1.2-2" }}
+  </strong>
+  from the total of {{ questionsInTotal }} questions
+</h1>
+<br />
+<h1>
+  Your Score is
+  <strong style="color: rgba(26, 70, 26, 0.651)">
+    {{
+      (scores.answersCounter * 100) / (scores.answersCounter + scores.wrong)
+        | number: "1.2-2"
+    }}
+  </strong>
+  from the questions you answered
+</h1>
+<br />
+<div>
+  <h2>Correct question:</h2>
+  <p>
+    Number of <strong style="color: green">Correct</strong> Answers:
+    {{ scores.answersCounter }}
+  </p>
+</div>
+<div>
+  <h2>Wrong Questions:</h2>
+  <p>Number of wrong Answers: {{ scores.wrong }}</p>
+  <div *ngIf="scores.wrongQuestions">
+    <p>Your <strong style="color: red">wrong</strong> answers:</p>
+    <ul>
+      <li
+        style="
+          margin-top: 1em;
+          border: 5px solid rgba(128, 128, 128, 0.573);
+          border-radius: 5px;
+          padding: 10px;
+          padding-bottom: 2em;
+          margin-bottom: 10px;
+          list-style: decimal-leading-zero;
+        "
+        *ngFor="let wq of scores.wrongQuestions"
+      >
+        <h3>
+          {{ wq.question }}
+        </h3>
+        <ul>
+          <li *ngFor="let o of wq.options">
+            <p>
+              {{ o }}
+            </p>
+          </li>
+        </ul>
+        <p *ngIf="!wq.selectedAnswer[1]">
+          Your Answer:
+          <strong style="color: red"> {{ wq.selectedAnswer[0] }} </strong>
+        </p>
+        <p *ngIf="wq.questionType === 'fill-in'">
+          Your Answer:
+          <strong style="color: red"> {{ wq.selectedAnswer }} </strong>
+        </p>
+        <div *ngIf="wq.selectedAnswer[1] && wq.questionType !== 'fill-in'">
+          <div>Your Answers:</div>
+          <strong style="color: red"> {{ wq.selectedAnswer[0] }} </strong>
+          <p>
+            <strong style="color: red"> {{ wq.selectedAnswer[1] }} </strong>
+          </p>
+          <p>
+            <strong style="color: red"> {{ wq.selectedAnswer[2] }} </strong>
+          </p>
+          <p>
+            <strong style="color: red"> {{ wq.selectedAnswer[3] }} </strong>
+          </p>
+          <p>
+            <strong style="color: red"> {{ wq.selectedAnswer[4] }} </strong>
+          </p>
+        </div>
+        <p><strong>Right Answer: </strong>{{ wq.correctAnswer }}</p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div>
+  <h2>Skiped Questions:</h2>
+  <p>
+    Number of <strong style="color: rgb(32, 5, 107)">Skipped</strong> Answers:
+    {{ scores.skipped }}
+  </p>
+  <div>
+    <ul>
+      <li
+        style="
+          margin-top: 1em;
+          border: 5px solid rgba(128, 128, 128, 0.573);
+          border-radius: 5px;
+          padding: 10px;
+          padding-bottom: 2em;
+          margin-bottom: 10px;
+          list-style: decimal-leading-zero;
+        "
+        *ngFor="let wq of scores.skipedQuestions"
+      >
+        <h3>
+          {{ wq.question }}
+        </h3>
+        <ul>
+          <li *ngFor="let o of wq.options">
+            <p>
+              {{ o }}
+            </p>
+          </li>
+        </ul>
+        <p><strong>Right Answer: </strong>{{ wq.correctAnswer }}</p>
+      </li>
+    </ul>
+  </div>
+</div>
+<div>
+  <h2>Rest questions:</h2>
+  <p>
+    Number of the <strong style="color: rgb(214, 129, 0)">Rest</strong> Answers:
+    {{ 120 - scores.answersCounter - scores.skipped - scores.wrong }}
+  </p>
+</div>
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/shared/score/score.component.spec.ts =====
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ScoreComponent } from './score.component';
+
+describe('ScoreComponent', () => {
+  let component: ScoreComponent;
+  let fixture: ComponentFixture<ScoreComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ScoreComponent],
+    });
+    fixture = TestBed.createComponent(ScoreComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/shared/score/score.service.ts =====
+import { Injectable } from '@angular/core';
+import { Question } from '../question';
+import { Score } from '../score';
+import { Router } from '@angular/router';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ScoreService {
+  scores: Score = {
+    wrong: 0,
+    skipped: 0,
+    remaining: 120,
+    wrongQuestions: [],
+    skipedQuestions: [],
+    rightQuestions: [],
+    answersCounter: 0,
+  };
+
+  getScores() {
+    return this.scores;
+  }
+  constructor(private router: Router) {}
+
+  updateScores(updatedScores: Score) {
+    this.scores = updatedScores;
+    console.table(this.scores);
+  }
+
+  isExamRoute(): boolean {
+    const segments = this.router.url
+      .split('/')
+      .filter((segment) => segment !== ''); // Split URL segments
+
+    if (segments.length >= 1 && segments[0] === 'exam') {
+      return true; // Check if the first segment is 'exam'
+    }
+    return false;
+  }
+
+  calculateUpdatedScores(question: Question, answers: string | string[]) {
+    const updatedScores = { ...this.scores };
+    if (Array.isArray(answers)) {
+      const correctAnswersFirstChars = question.correctAnswer.map((correct) =>
+        correct.charAt(0),
+      );
+      const isCorrect = answers.every((answer) =>
+        correctAnswersFirstChars.includes(answer.charAt(0)),
+      );
+      if (question.skipped) {
+        if (
+          !this.scores.rightQuestions.some((q) => q.index === question.index) &&
+          !this.scores.skipedQuestions.some((q) => q.index === question.index)
+        ) {
+          updatedScores.skipedQuestions.push(question);
+        }
+      } else if (
+        isCorrect &&
+        answers.length === question.correctAnswer.length
+      ) {
+        if (this.isExamRoute()) {
+          updatedScores.wrongQuestions = updatedScores.wrongQuestions.filter(
+            (q) => q.index !== question.index,
+          );
+        }
+        updatedScores.skipedQuestions = updatedScores.skipedQuestions.filter(
+          (q) => q.index !== question.index,
+        );
+        if (
+          !this.scores.rightQuestions.some((q) => q.index === question.index)
+        ) {
+          updatedScores.rightQuestions.push(question);
+        }
+      } else {
+        if (Array.isArray(answers) && answers.length !== 0) {
+          if (
+            !this.scores.wrongQuestions.includes(question) &&
+            !this.scores.wrongQuestions.some(
+              (q) => q.selectedAnswer[0] === question.selectedAnswer[0],
+            )
+          ) {
+            updatedScores.wrongQuestions.push(question);
+          }
+          if (
+            this.scores.rightQuestions.some((rq) => rq.index === question.index)
+          ) {
+            updatedScores.rightQuestions = updatedScores.rightQuestions.filter(
+              (q) => q.index !== question.index,
+            );
+          }
+        }
+      }
+    } else {
+      if (answers.includes(question.correctAnswer[0])) {
+        updatedScores.rightQuestions.push(question);
+        updatedScores.skipedQuestions = updatedScores.skipedQuestions.filter(
+          (q) => q.index !== question.index,
+        );
+        if (this.isExamRoute()) {
+          updatedScores.wrongQuestions = updatedScores.wrongQuestions.filter(
+            (q) => q.index !== question.index,
+          );
+        }
+      } else if (answers !== '') {
+        if (
+          !this.scores.wrongQuestions.includes(question) &&
+          !this.scores.wrongQuestions.some(
+            (q) => q.selectedAnswer[0] === question.selectedAnswer[0],
+          )
+        ) {
+          updatedScores.wrongQuestions.push(question);
+        }
+        if (
+          this.scores.rightQuestions.some((rq) => rq.index === question.index)
+        ) {
+          updatedScores.rightQuestions = updatedScores.rightQuestions.filter(
+            (q) => q.index !== question.index,
+          );
+        }
+      }
+    }
+    updatedScores.answersCounter = updatedScores.rightQuestions.length;
+    updatedScores.skipped = updatedScores.skipedQuestions.length;
+    updatedScores.wrong = updatedScores.wrongQuestions.length;
+    this.updateScores(updatedScores);
+  }
+}
+
+
+===== /home/osama_thabit/Angular/Angular_Learning/angularProject/LPC1-APP/LLCE-App/src/app/shared/score/score.component.ts =====
+import { Component } from '@angular/core';
+import { Score } from '../score';
+import { ScoreService } from './score.service';
+import { QuestionService } from '../question.service';
+
+@Component({
+  selector: 'lpc-score',
+  templateUrl: './score.component.html',
+  styleUrls: ['./score.component.css'],
+})
+export class ScoreComponent {
+  scores: Score;
+  questionsInTotal: number;
+
+  constructor(
+    private scoreService: ScoreService,
+    private service: QuestionService,
+  ) {
+    this.scores = this.scoreService.getScores();
+    this.questionsInTotal = this.service.questionsLength;
+    console.log(this.questionsInTotal);
+    console.log(this.service.questionsLength);
+  }
+
+  isArray(answer: string | string[]): boolean {
+    return Array.isArray(answer);
+  }
+}
+
+
