@@ -33,7 +33,7 @@ export class ScoreService {
       .filter((segment) => segment !== ''); // Split URL segments
 
     if (segments.length >= 1 && segments[0] === 'exam') {
-      return true; // Check if the first segment is 'exam'
+      return true; // Check if the first segment is exam
     }
     return false;
   }
