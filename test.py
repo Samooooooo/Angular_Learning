@@ -36,17 +36,17 @@ def OpenCheckMode(driver):
 def test_OpenLearnMode():
     driver = Open_WebPage()
     OpenLearnMode(driver)
+    time.sleep(1)
     QuestionsList = driver.find_element(By.XPATH,'/html/body/lpc-root/main/lpc-question-list/div/ul')
     assert QuestionsList.is_displayed()
     logging.info("Learn Mode Is working")
-    time.sleep(1)
     driver.quit()
 
 def test_OpenCheckMode():
     driver = Open_WebPage()
     OpenCheckMode(driver)
+    time.sleep(1)
     Question = driver.find_element(By.XPATH,'/html/body/lpc-root/main/lpc-check-q-details/div/div/div/h3')
     assert Question.is_displayed()
     logging.info("Check Mode Is working")
-    time.sleep(1)
     driver.quit()
