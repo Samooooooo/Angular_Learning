@@ -33,7 +33,7 @@ def OpenCheckMode(driver):
 
 
    
-def test_LoginClickble_Shop():
+def test_OpenLearnMode():
     driver = Open_WebPage()
     OpenLearnMode(driver)
     QuestionsList = driver.find_element(By.XPATH,'/html/body/lpc-root/main/lpc-question-list/div/ul')
@@ -42,7 +42,7 @@ def test_LoginClickble_Shop():
     time.sleep(1)
     driver.quit()
 
-def test_LoginClickble_Shop():
+def test_OpenCheckMode():
     driver = Open_WebPage()
     OpenCheckMode(driver)
     Question = driver.find_element(By.XPATH,'/html/body/lpc-root/main/lpc-check-q-details/div/div/div/h3')
